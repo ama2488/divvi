@@ -13,6 +13,7 @@ import {
 import FormContainer from '../components/formcontainer.js';
 import Label from '../components/label.js';
 import Button from '../components/button.js';
+import Header from '../components/header.js';
 
 const {width, height} = Dimensions.get('window');
 
@@ -30,18 +31,13 @@ export default class CharityProfile extends Component {
         justifyContent: 'center'
       }}>
         <ScrollView>
-          <Text style={styles.header}>
-            {this.props.navigation.state.params.title}
-          </Text>
+          <Header text={this.props.navigation.state.params.title}></Header>
           <Text style={styles.label}>
             {this.props.navigation.state.params.subTitle}
           </Text>
           <Image style={styles.image} source={{
             uri: this.props.navigation.state.params.image
           }}/>
-          <Text>
-            {this.props.navigation.params}
-          </Text>
           <Button label="Back" styles={{
             label: styles.buttonWhiteText
           }} onPress={() => {

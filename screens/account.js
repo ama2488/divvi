@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import Button from '../components/button.js';
+import Header from '../components/header.js';
 
 const {width, height} = Dimensions.get('window');
 
@@ -24,9 +25,7 @@ export default class Account extends Component {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <Text style={styles.header}>
-          Account
-        </Text>
+        <Header text={'Account'}></Header>
         <Button label="Purchase" styles={{
           label: styles.buttonWhiteText
         }} onPress={() => {
@@ -41,12 +40,5 @@ const styles = StyleSheet.create({
   buttonWhiteText: {
     fontSize: 20,
     color: '#FFF'
-  },
-  header: {
-    fontSize: 40,
-    color: '#283940',
-    alignSelf: 'center',
-    marginTop: 30,
-    marginBottom: 30
   }
 })

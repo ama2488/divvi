@@ -7,7 +7,8 @@ import {
   View,
   Text,
   ScrollView,
-  Image
+  Image,
+  TouchableHighlight
 } from 'react-native';
 
 import FormContainer from '../components/formcontainer.js';
@@ -72,6 +73,17 @@ export default class Interests extends Component {
         }
       ]
     };
+  };
+
+  updateInterests(interest) {
+    let index = this.state.interests.indexOf(interest);
+    let interests = [...this.state.interests];
+
+    interests[index].selected = (interest.selected)
+      ? false
+      : true;
+
+    this.setState({interests});
   }
 
   onSave = () => {
@@ -101,13 +113,24 @@ export default class Interests extends Component {
     return pairs.map((item, index) => {
       return (
         <View style={styles.item} key={index}>
-          <Image resizeMode={Image.resizeMode.cover} style={styles.photo} source={item[0].src}/>
-          <Image resizeMode={Image.resizeMode.cover} style={styles.photo} source={item[1].src}/>
+          <Image resizeMode={Image.resizeMode.cover} style={(item[0].selected)
+            ? styles.selectedPhoto
+            : styles.photo} source={item[0].src}>
+            <TouchableHighlight onPress={() => this.updateInterests(item[0])}>
+              <Text style={styles.label}>{item[0].label}</Text>
+            </TouchableHighlight>
+          </Image>
+          <Image resizeMode={Image.resizeMode.cover} style={(item[0].selected)
+            ? styles.selectedPhoto
+            : styles.photo} source={item[1].src} onPress={this.updateInterests(item[1])}>
+            <TouchableHighlight onPress={() => this.updateInterests(item[1])}>
+              <Text style={styles.label}>{item[1].label}</Text>
+            </TouchableHighlight>
+          </Image>
         </View>
       );
     });
   }
-
   render() {
     return (
       <View style={styles.container}>
@@ -124,11 +147,11 @@ export default class Interests extends Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginTop: 20
   },
   gallery: {
     flexDirection: 'column'
@@ -168,5 +191,17 @@ const styles = StyleSheet.create({
     height: 90,
     width: 90,
     opacity: 50
+  },
+  selectedPhoto: {
+    flex: 1,
+    height: 200,
+    borderWidth: 2,
+    borderColor: 'green'
+  },
+  label: {
+    fontSize: 20,
+    backgroundColor: 'transparent',
+    color: 'white',
+    alignSelf: 'center'
   }
 });

@@ -11,6 +11,7 @@ import {
 import FormContainer from '../components/formcontainer.js';
 import Label from '../components/label.js';
 import Button from '../components/button.js';
+import Header from '../components/header.js';
 
 const {width, height} = Dimensions.get('window');
 
@@ -26,9 +27,7 @@ export default class EditProfile extends Component {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <Text style={styles.header}>
-          Edit Profile
-        </Text>
+        <Header text={'Edit Profile'}></Header>
         <Button label="Save" styles={{
           label: styles.buttonWhiteText
         }} onPress={() => {
@@ -67,12 +66,5 @@ const styles = StyleSheet.create({
   },
   footer: {
     marginTop: 5
-  },
-  header: {
-    fontSize: 40,
-    color: '#283940',
-    alignSelf: 'center',
-    marginTop: 30,
-    marginBottom: 30
   }
 });

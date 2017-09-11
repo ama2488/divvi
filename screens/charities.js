@@ -8,6 +8,41 @@ import Button from '../components/button.js';
 const {width, height} = Dimensions.get('window');
 
 export default class Charities extends Component {
+  state = {
+    cards: [
+      {
+        id: 1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
+        title: "APA",
+        subTitle: "Austin, TX"
+      }, {
+        id: 2,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
+        title: "GiveMeMoney",
+        subTitle: "Houston, TX"
+      }, {
+        id: 3,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
+        title: "Donate",
+        subTitle: "Dallas, TX"
+      }, {
+        id: 4,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
+        title: "GiveMeMoney",
+        subTitle: "Houston, TX"
+      }, {
+        id: 5,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
+        title: "APA",
+        subTitle: "Austin, TX"
+      }
+    ]
+  };
+
+  // componentWillMount(){
+  //   http to get all charities/ads and set cards equal to users' custom card array
+  // }
+
   viewProfile = (card) => {
     console.log(card);
     this.props.navigation.navigate('CharityProfile', card);
@@ -18,18 +53,7 @@ export default class Charities extends Component {
         <Container onTossLeft={card => console.log(card, 'tossed left')} onTossRight={card => console.log(card, 'tossed right')} firstChild={'hello'} actionsBar={(toss, onProfile) => <Actions toss={toss} onProfile={() => {
           onProfile(this.viewProfile)
         }}/>}>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="APA" subTitle="Austin, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="GiveMeMoney" subTitle="Houston, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="Donate" subTitle="Dallas, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="APA" subTitle="Austin, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="GiveMeMoney" subTitle="Houston, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="Donate" subTitle="Dallas, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="APA" subTitle="Austin, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="GiveMeMoney" subTitle="Houston, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="Donate" subTitle="Dallas, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="APA" subTitle="Austin, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="GiveMeMoney" subTitle="Houston, TX"/>
-          <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="Donate" subTitle="Dallas, TX"/>
+          {this.state.cards.map(card => <Card key={card.id} image={card.image} title={card.title} subTitle={card.subTitle}/>)}
         </Container>
       </View>
     );

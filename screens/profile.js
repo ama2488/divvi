@@ -12,6 +12,7 @@ import {
 import FormContainer from '../components/formcontainer.js';
 import Label from '../components/label.js';
 import Button from '../components/button.js';
+import Header from '../components/header.js';
 
 const {width, height} = Dimensions.get('window');
 
@@ -30,9 +31,7 @@ export default class Profile extends Component {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <Text style={styles.header}>
-          Profile
-        </Text>
+        <Header text='Profile'></Header>
         <Image style={{
           height: 200,
           width: 200,
@@ -83,12 +82,5 @@ const styles = StyleSheet.create({
   },
   footer: {
     marginTop: 5
-  },
-  header: {
-    fontSize: 40,
-    color: '#283940',
-    alignSelf: 'center',
-    marginTop: 30,
-    marginBottom: 30
   }
 });

@@ -3,21 +3,21 @@ import {StyleSheet, Text} from 'react-native';
 
 const Header = (props) => {
   return (
-    <Text style={props.styles && props.styles.textLabel
-      ? props.styles.textLabel
-      : styles.textLabel}>
+    <Text style={props.styles && props.styles.header
+      ? props.styles.header
+      : styles.header}>
       {props.text}
     </Text>
   );
 }
 
 const styles = StyleSheet.create({
-  textLabel: {
+  header: {
     fontSize: 40,
-    fontWeight: 'bold',
-    fontFamily: 'Verdana',
-    marginBottom: 10,
-    color: 'grey'
+    color: '#283940',
+    alignSelf: 'center',
+    marginTop: 30,
+    marginBottom: 30
   }
 });
 
