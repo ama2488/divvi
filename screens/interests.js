@@ -77,13 +77,14 @@ export default class Interests extends Component {
 
   updateInterests(interest) {
     let index = this.state.interests.indexOf(interest);
-    let interests = [...this.state.interests];
+    let updatedInterests = [...this.state.interests];
 
-    interests[index].selected = (interest.selected)
+    updatedInterests[index].selected = (interest.selected)
       ? false
       : true;
 
-    this.setState({interests});
+    this.setState({interests: updatedInterests});
+    console.log(this.state);
   }
 
   onSave = () => {
@@ -116,14 +117,18 @@ export default class Interests extends Component {
           <Image resizeMode={Image.resizeMode.cover} style={(item[0].selected)
             ? styles.selectedPhoto
             : styles.photo} source={item[0].src}>
-            <TouchableHighlight onPress={() => this.updateInterests(item[0])}>
+            <TouchableHighlight onPress={() => {
+              this.updateInterests(item[0])
+            }}>
               <Text style={styles.label}>{item[0].label}</Text>
             </TouchableHighlight>
           </Image>
-          <Image resizeMode={Image.resizeMode.cover} style={(item[0].selected)
+          <Image resizeMode={Image.resizeMode.cover} style={(item[1].selected)
             ? styles.selectedPhoto
-            : styles.photo} source={item[1].src} onPress={this.updateInterests(item[1])}>
-            <TouchableHighlight onPress={() => this.updateInterests(item[1])}>
+            : styles.photo} source={item[1].src}>
+            <TouchableHighlight onPress={() => {
+              this.updateInterests(item[1])
+            }}>
               <Text style={styles.label}>{item[1].label}</Text>
             </TouchableHighlight>
           </Image>

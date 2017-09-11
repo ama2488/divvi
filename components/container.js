@@ -36,7 +36,6 @@ export default class Container extends Component {
     let {stack, toss} = this.state;
     let {onTossLeft, onTossRight, actionsBar, onProfile, firstChild} = this.props;
     const actionBar = actionsBar(toss => {
-      console.log(toss);
       this.setState({toss})
     }, (callback) => {
       React.Children.forEach(stack, (child, index) => {
