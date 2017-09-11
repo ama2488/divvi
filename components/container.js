@@ -34,13 +34,18 @@ export default class Container extends Component {
 
   render() {
     let {stack, toss} = this.state;
-    let {onTossLeft, onTossRight, actionsBar, onProfile} = this.props;
+    let {onTossLeft, onTossRight, actionsBar, onProfile, firstChild} = this.props;
     const actionBar = actionsBar(toss => {
       console.log(toss);
       this.setState({toss})
     }, (callback) => {
-      callback();
-    })
+      React.Children.forEach(stack, (child, index) => {
+        if (index === stack.length - 1) {
+          callback(child.props);
+        }
+      });
+    });
+
     return (
       <View style={{
         flex: 1

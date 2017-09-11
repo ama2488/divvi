@@ -5,7 +5,9 @@ import {
   Animated,
   Dimensions,
   View,
-  Text
+  Text,
+  Image,
+  ScrollView
 } from 'react-native';
 
 import FormContainer from '../components/formcontainer.js';
@@ -16,6 +18,7 @@ const {width, height} = Dimensions.get('window');
 
 export default class CharityProfile extends Component {
   onBack = () => {
+    console.log();
     this.props.navigation.goBack();
   };
   render() {
@@ -26,14 +29,25 @@ export default class CharityProfile extends Component {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <Text style={styles.header}>
-          Profile
-        </Text>
-        <Button label="Back" styles={{
-          label: styles.buttonWhiteText
-        }} onPress={() => {
-          this.onBack()
-        }}/>
+        <ScrollView>
+          <Text style={styles.header}>
+            {this.props.navigation.state.params.title}
+          </Text>
+          <Text style={styles.label}>
+            {this.props.navigation.state.params.subTitle}
+          </Text>
+          <Image style={styles.image} source={{
+            uri: this.props.navigation.state.params.image
+          }}/>
+          <Text>
+            {this.props.navigation.params}
+          </Text>
+          <Button label="Back" styles={{
+            label: styles.buttonWhiteText
+          }} onPress={() => {
+            this.onBack()
+          }}/>
+        </ScrollView>
       </View>
     );
   }
@@ -46,16 +60,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   label: {
-    color: '#0d8898',
-    fontSize: 13
+    color: 'white',
+    fontSize: 20,
+    margin: 10,
+    alignSelf: 'center'
   },
   alignRight: {
     alignSelf: 'flex-end'
   },
   textInput: {
     height: 50,
-    fontSize: 30,
-    // backgroundColor: '#FFF'
+    fontSize: 30
   },
   buttonWhiteText: {
     fontSize: 20,
@@ -72,7 +87,14 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: '#283940',
     alignSelf: 'center',
-    marginTop: 30,
-    marginBottom: 30
+    marginTop: 30
+  },
+  image: {
+    height: 200,
+    width: 200,
+    borderRadius: 100,
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderColor: 'white'
   }
 });

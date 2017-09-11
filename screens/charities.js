@@ -8,14 +8,14 @@ import Button from '../components/button.js';
 const {width, height} = Dimensions.get('window');
 
 export default class Charities extends Component {
-  viewProfile = () => {
-
-    this.props.navigation.navigate('CharityProfile');
+  viewProfile = (card) => {
+    console.log(card);
+    this.props.navigation.navigate('CharityProfile', card);
   };
   render() {
     return (
       <View style={styles.container}>
-        <Container onTossLeft={card => console.log(card, 'tossed left')} onTossRight={card => console.log(card, 'tossed right')} actionsBar={(toss, onProfile) => <Actions toss={toss} onProfile={() => {
+        <Container onTossLeft={card => console.log(card, 'tossed left')} onTossRight={card => console.log(card, 'tossed right')} firstChild={'hello'} actionsBar={(toss, onProfile) => <Actions toss={toss} onProfile={() => {
           onProfile(this.viewProfile)
         }}/>}>
           <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="APA" subTitle="Austin, TX"/>
