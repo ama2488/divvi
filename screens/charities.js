@@ -8,14 +8,16 @@ import Button from '../components/button.js';
 const {width, height} = Dimensions.get('window');
 
 export default class Charities extends Component {
-  viewProfile = (card) => {
-    console.log('profile', card);
+  viewProfile = () => {
+
     this.props.navigation.navigate('CharityProfile');
   };
   render() {
     return (
       <View style={styles.container}>
-        <Container onTossLeft={card => console.log(card, 'tossed left')} onTossRight={card => console.log(card, 'tossed right')} actionsBar={toss => <Actions toss={toss}/>} onProfile={card => this.viewProfile(card)}>
+        <Container onTossLeft={card => console.log(card, 'tossed left')} onTossRight={card => console.log(card, 'tossed right')} actionsBar={(toss, onProfile) => <Actions toss={toss} onProfile={() => {
+          onProfile(this.viewProfile)
+        }}/>}>
           <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="APA" subTitle="Austin, TX"/>
           <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="GiveMeMoney" subTitle="Houston, TX"/>
           <Card image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf" title="Donate" subTitle="Dallas, TX"/>

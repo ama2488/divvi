@@ -44,7 +44,6 @@ export default class Animator extends Component {
   }
 
   componentWillReceiveProps({toss, onTossRight, onTossLeft}) {
-    console.log(this.props.toss, 'props toss');
     if (toss && !this.props.toss) {
       if (toss === 'left') {
         return Animated.timing(this.pan, {
@@ -88,7 +87,7 @@ export default class Animator extends Component {
     };
 
     return (
-      <Animated.View {...this.cardPanResponder.panHandlers} style={[styles.card, animatedStyle, style]} onProfile={() => onProfile()}>
+      <Animated.View {...this.cardPanResponder.panHandlers} style={[styles.card, animatedStyle, style]}>
         {children}
       </Animated.View>
     );

@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-export default({toss, onProfile}) => {
+export default({toss, onProfile, cards}) => {
+
   return (
     <View style={styles.actionBar}>
       <View style={{

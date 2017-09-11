@@ -1,6 +1,13 @@
 import Animator from './animator';
 import React, {Component} from 'react';
-import {StyleSheet, PanResponder, Animated, Dimensions, View} from 'react-native';
+import {
+  StyleSheet,
+  PanResponder,
+  Animated,
+  Dimensions,
+  View,
+  Text
+} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
 
@@ -17,10 +24,8 @@ export default class Container extends Component {
     this.setState({
       stack: stack.filter((item, index) => index !== stack.length - 1),
       toss: false
-    }, callback);
+    }, callback)
   }
-
-  showProfile() {}
 
   componentWillReceiveProps({children}) {
     if (children !== this.props.children)
@@ -30,7 +35,12 @@ export default class Container extends Component {
   render() {
     let {stack, toss} = this.state;
     let {onTossLeft, onTossRight, actionsBar, onProfile} = this.props;
-
+    const actionBar = actionsBar(toss => {
+      console.log(toss);
+      this.setState({toss})
+    }, (callback) => {
+      callback();
+    })
     return (
       <View style={{
         flex: 1
@@ -42,11 +52,8 @@ export default class Container extends Component {
             {child}
           </Animator>
         ))}
-        {actionsBar(toss => {
-          console.log(toss);
-          this.setState({toss})
-        })}
+        {actionBar}
       </View>
-    );
+    )
   }
 }
