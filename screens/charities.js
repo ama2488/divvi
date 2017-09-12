@@ -26,6 +26,11 @@ export default class Charities extends Component {
         title: "Donate",
         subTitle: "Dallas, TX"
       }, {
+        id: 35,
+        image: "http://www.toxel.com/wp-content/uploads/2008/07/ua2.jpg",
+        title: "100 DIV",
+        subTitle: ""
+      }, {
         id: 4,
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
         title: "GiveMeMoney",
