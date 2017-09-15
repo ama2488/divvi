@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   PanResponder,
@@ -8,23 +8,23 @@ import {
   TextInput,
   Text,
   ScrollView
-} from 'react-native';
-// import {Button} from 'react-native-elements';
-import FormContainer from '../components/formcontainer.js';
-import Label from '../components/label.js';
-import Button from '../components/button.js';
+} from 'react-native'
 
-const {width, height} = Dimensions.get('window');
+import FormContainer from '../components/common/formcontainer.js'
+import Label from '../components/common/label.js'
+import Button from '../components/common/button.js'
+
+const { width, height } = Dimensions.get('window')
 
 export default class SignUp extends Component {
   onSignIn = () => {
-    this.props.navigation.navigate('Login');
+    this.props.navigation.navigate('Login')
   };
   onSubmit = () => {
-    this.props.navigation.navigate('Tabs');
+    this.props.navigation.navigate('Tabs')
   };
 
-  render() {
+  render () {
     return (
       <ScrollView style={styles.scroll}>
         <FormContainer>
@@ -33,23 +33,23 @@ export default class SignUp extends Component {
           </Text>
         </FormContainer>
         <FormContainer>
-          <Label text="Email"/>
+          <Label text='Password'/>
           <TextInput style={styles.textInput}/>
         </FormContainer>
         <FormContainer>
-          <Label text="Password"/>
+          <Label text='Repeat Password'/>
           <TextInput secureTextEntry={true} style={styles.textInput}/>
         </FormContainer>
         <View>
           <FormContainer>
-            <Button label="Submit" styles={{
+            <Button label='Create Account' styles={{
               label: styles.buttonWhiteText
             }} onPress={() => {
               this.onSubmit()
             }}/>
           </FormContainer>
           <FormContainer>
-            <Button label="Login" styles={{
+            <Button label='Login' styles={{
               label: styles.buttonBlackText
             }} onPress={() => {
               this.onSignIn()
@@ -57,7 +57,7 @@ export default class SignUp extends Component {
           </FormContainer>
         </View>
       </ScrollView>
-    );
+    )
   }
 }
 
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30
   }
-});
+})

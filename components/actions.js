@@ -1,8 +1,7 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-export default({toss, onProfile, cards}) => {
-
+export default({ toss, onProfile, cards }) => {
   return (
     <View style={styles.actionBar}>
       <View style={{
@@ -29,8 +28,8 @@ export default({toss, onProfile, cards}) => {
         </TouchableOpacity>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   actionBar: {
@@ -71,4 +70,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     color: 'white'
   }
-});
+})

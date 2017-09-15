@@ -1,15 +1,15 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {TabNavigator, StackNavigator} from 'react-navigation';
-import {Icon} from 'react-native-elements';
-import Profile from '../screens/profile.js';
-import Charities from '../screens/charities.js';
-import Account from '../screens/account.js';
-import SignIn from '../screens/signin.js';
-import SignUp from '../screens/signup.js';
-import Interests from '../screens/interests.js';
-import EditProfile from '../screens/editProfile.js';
-import Purchase from '../screens/purchase.js';
+import React from 'react'
+import { View } from 'react-native'
+import { TabNavigator, StackNavigator } from 'react-navigation'
+import { Icon } from 'react-native-elements'
+import Profile from '../screens/profile.js'
+import Charities from '../screens/charities.js'
+import Account from '../screens/account.js'
+import SignIn from '../screens/signin.js'
+import SignUp from '../screens/signup.js'
+import Interests from '../screens/interests.js'
+import EditProfile from '../screens/editProfile.js'
+import Purchase from '../screens/purchase.js'
 import CharityProfile from '../screens/charityProfile.js'
 
 export const ProfileStack = StackNavigator({
@@ -22,7 +22,7 @@ export const ProfileStack = StackNavigator({
   Interests: {
     screen: Interests
   }
-}, {headerMode: 'none'});
+}, { headerMode: 'none' })
 
 export const AccountStack = StackNavigator({
   Account: {
@@ -37,7 +37,7 @@ export const AccountStack = StackNavigator({
       title: 'Purchase'
     }
   }
-}, {headerMode: 'none'});
+}, { headerMode: 'none' })
 
 export const CharityStack = StackNavigator({
   Charities: {
@@ -52,7 +52,7 @@ export const CharityStack = StackNavigator({
       title: 'Purchase'
     }
   }
-}, {headerMode: 'none'});
+}, { headerMode: 'none' })
 
 export const Tabs = TabNavigator({
   Profile: {
@@ -60,7 +60,7 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       title: 'Profile',
       tabBarLabel: 'Profile',
-      tabBarIcon: ({tintColor}) => <Icon name="ios-settings-outline" type="ionicon" size={33} color={tintColor}/>
+      tabBarIcon: ({ tintColor }) => <Icon name='ios-settings-outline' type='ionicon' size={33} color={tintColor}/>
     }
   },
   Charities: {
@@ -68,15 +68,15 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       title: 'Browse',
       tabBarLabel: 'Browse',
-      tabBarIcon: ({tintColor}) => <View style={{
-          height: 80,
-          width: 80,
-          borderRadius: 100,
-          backgroundColor: '#FE6D64',
-          paddingTop: 15
-        }}>
-          <Icon name="ios-heart-outline" type="ionicon" size={45} color={tintColor}/>
-        </View>
+      tabBarIcon: ({ tintColor }) => <View style={{
+        height: 80,
+        width: 80,
+        borderRadius: 100,
+        backgroundColor: '#FE6D64',
+        paddingTop: 15
+      }}>
+        <Icon name='ios-heart-outline' type='ionicon' size={45} color={tintColor}/>
+      </View>
     }
   },
   Account: {
@@ -84,7 +84,7 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       title: 'Account',
       tabBarLabel: 'Account',
-      tabBarIcon: ({tintColor}) => <Icon name="connectdevelop" type="font-awesome" size={25} color={tintColor}/>
+      tabBarIcon: ({ tintColor }) => <Icon name='connectdevelop' type='font-awesome' size={25} color={tintColor}/>
     }
   }
 }, {
@@ -99,7 +99,7 @@ export const Tabs = TabNavigator({
     },
     showLabel: false
   }
-});
+})
 
 export const Root = StackNavigator({
   Register: {
@@ -111,4 +111,4 @@ export const Root = StackNavigator({
   Tabs: {
     screen: Tabs
   }
-}, {headerMode: 'none'});
+}, { headerMode: 'none' })

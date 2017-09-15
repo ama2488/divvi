@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {StyleSheet, PanResponder, Animated, Dimensions} from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, PanResponder, Animated, Dimensions } from 'react-native'
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 export default class Animator extends Component {
-  componentWillMount() {
-    let {onTossRight, onTossLeft} = this.props;
-    this.pan = new Animated.ValueXY();
+  componentWillMount () {
+    let { onTossRight, onTossLeft } = this.props
+    this.pan = new Animated.ValueXY()
 
     this.cardPanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -16,9 +16,9 @@ export default class Animator extends Component {
           dy: this.pan.y
         }
       ]),
-      onPanResponderRelease: (e, {dx}) => {
-        const absDx = Math.abs(dx);
-        const direction = absDx / dx;
+      onPanResponderRelease: (e, { dx }) => {
+        const absDx = Math.abs(dx)
+        const direction = absDx / dx
 
         if (absDx > 120) {
           Animated.decay(this.pan, {
@@ -29,7 +29,7 @@ export default class Animator extends Component {
             deceleration: 0.995
           }).start(dx > 0
             ? onTossRight
-            : onTossLeft);
+            : onTossLeft)
         } else {
           Animated.spring(this.pan, {
             toValue: {
@@ -37,13 +37,13 @@ export default class Animator extends Component {
               y: 0
             },
             friction: 4.5
-          }).start();
+          }).start()
         }
       }
-    });
+    })
   }
 
-  componentWillReceiveProps({toss, onTossRight, onTossLeft}) {
+  componentWillReceiveProps ({ toss, onTossRight, onTossLeft }) {
     if (toss && !this.props.toss) {
       if (toss === 'left') {
         return Animated.timing(this.pan, {
@@ -52,7 +52,7 @@ export default class Animator extends Component {
             y: 0
           },
           duration: 400
-        }).start(onTossLeft);
+        }).start(onTossLeft)
       }
       if (toss === 'right') {
         return Animated.timing(this.pan, {
@@ -61,19 +61,19 @@ export default class Animator extends Component {
             y: 0
           },
           duration: 400
-        }).start(onTossRight);
+        }).start(onTossRight)
       }
     }
   }
 
-  render() {
-    let {children, style} = this.props;
+  render () {
+    let { children, style } = this.props
     const rotateCard = this.pan.x.interpolate({
       inputRange: [
         -200, 0, 200
       ],
       outputRange: ['10deg', '0deg', '-10deg']
-    });
+    })
     const animatedStyle = {
       transform: [
         {
@@ -84,13 +84,13 @@ export default class Animator extends Component {
           rotate: rotateCard
         }
       ]
-    };
+    }
 
     return (
       <Animated.View {...this.cardPanResponder.panHandlers} style={[styles.card, animatedStyle, style]}>
         {children}
       </Animated.View>
-    );
+    )
   }
 }
 
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
     top: 20,
     margin: 10
   }
-});
+})

@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import React from 'react'
+import { StyleSheet, Text } from 'react-native'
 
 const Header = (props) => {
   return (
@@ -8,7 +8,7 @@ const Header = (props) => {
       : styles.header}>
       {props.text}
     </Text>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -19,6 +19,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30
   }
-});
+})
 
-export default Header;
+export default Header

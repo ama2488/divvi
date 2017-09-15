@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   PanResponder,
@@ -8,21 +8,21 @@ import {
   Text,
   Image,
   ScrollView
-} from 'react-native';
+} from 'react-native'
 
-import FormContainer from '../components/formcontainer.js';
-import Label from '../components/label.js';
-import Button from '../components/button.js';
-import Header from '../components/header.js';
+import FormContainer from '../components/common/formcontainer.js'
+import Label from '../components/common/label.js'
+import Button from '../components/common/button.js'
+import Header from '../components/common/header.js'
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 export default class CharityProfile extends Component {
   onBack = () => {
-    console.log();
-    this.props.navigation.goBack();
+    console.log()
+    this.props.navigation.goBack()
   };
-  render() {
+  render () {
     return (
       <View style={{
         flex: 1,
@@ -38,14 +38,14 @@ export default class CharityProfile extends Component {
           <Image style={styles.image} source={{
             uri: this.props.navigation.state.params.image
           }}/>
-          <Button label="Back" styles={{
+          <Button label='Back' styles={{
             label: styles.buttonWhiteText
           }} onPress={() => {
             this.onBack()
           }}/>
         </ScrollView>
       </View>
-    );
+    )
   }
 }
 
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'white'
   }
-});
+})

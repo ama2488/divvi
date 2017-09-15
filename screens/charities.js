@@ -1,58 +1,71 @@
-import React, {Component} from 'react';
-import {StyleSheet, PanResponder, Animated, Dimensions, View} from 'react-native';
-import Container from '../components/container.js';
-import Card from '../components/card.js';
-import Actions from '../components/actions.js';
-import Button from '../components/button.js';
+import React, { Component } from 'react'
+import { StyleSheet, PanResponder, Animated, Dimensions, View, AsyncStorage } from 'react-native'
+import Container from '../components/container.js'
+import Card from '../components/card.js'
+import Actions from '../components/actions.js'
+import Button from '../components/common/button.js'
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 export default class Charities extends Component {
   state = {
     cards: [
       {
         id: 1,
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
-        title: "APA",
-        subTitle: "Austin, TX"
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf',
+        title: 'APA',
+        subTitle: 'Austin, TX'
       }, {
         id: 2,
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
-        title: "GiveMeMoney",
-        subTitle: "Houston, TX"
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf',
+        title: 'GiveMeMoney',
+        subTitle: 'Houston, TX'
       }, {
         id: 3,
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
-        title: "Donate",
-        subTitle: "Dallas, TX"
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf',
+        title: 'Donate',
+        subTitle: 'Dallas, TX'
       }, {
         id: 35,
-        image: "http://www.toxel.com/wp-content/uploads/2008/07/ua2.jpg",
-        title: "100 DIV",
-        subTitle: ""
+        image: 'http://www.toxel.com/wp-content/uploads/2008/07/ua2.jpg',
+        title: '100 DIV',
+        subTitle: ''
       }, {
         id: 4,
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
-        title: "GiveMeMoney",
-        subTitle: "Houston, TX"
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf',
+        title: 'GiveMeMoney',
+        subTitle: 'Houston, TX'
       }, {
         id: 5,
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf",
-        title: "APA",
-        subTitle: "Austin, TX"
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYSQmpM6-PdGIJVTSE6CbTjLpiGLyhgIMQOHBGkN6rzjcQBLNf',
+        title: 'APA',
+        subTitle: 'Austin, TX'
       }
     ]
   };
 
-  // componentWillMount(){
-  //   http to get all charities/ads and set cards equal to users' custom card array
-  // }
+  componentWillMount = () => {
+    console.log(this.state, 'CHARITY STATE ON MOUNT')
+    let interests
+    let selected
+    AsyncStorage.getItem('Interests').then((res) => {
+      interests = JSON.parse(res)
+      selected = interests.interests.filter((i) => {
+        if (i.selected) {
+          return i
+        }
+      }).map((t) => {
+        return t.label
+      })
+      console.log(selected, 'INTERESTS')
+    })
+  }
 
   viewProfile = (card) => {
-    console.log(card);
-    this.props.navigation.navigate('CharityProfile', card);
+    console.log(card)
+    this.props.navigation.navigate('CharityProfile', card)
   };
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <Container onTossLeft={card => console.log(card, 'tossed left')} onTossRight={card => console.log(card, 'tossed right')} firstChild={'hello'} actionsBar={(toss, onProfile) => <Actions toss={toss} onProfile={() => {
@@ -61,7 +74,7 @@ export default class Charities extends Component {
           {this.state.cards.map(card => <Card key={card.id} image={card.image} title={card.title} subTitle={card.subTitle}/>)}
         </Container>
       </View>
-    );
+    )
   }
 }
 
@@ -81,4 +94,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#FFF'
   }
-});
+})

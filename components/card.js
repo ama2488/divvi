@@ -1,7 +1,7 @@
-import React from 'react';
-import {StyleSheet, View, Image, Text} from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Image, Text } from 'react-native'
 
-export default({image, title, subTitle}) => (
+export default({ image, title, subTitle }) => (
   <View style={styles.container}>
     <Image style={styles.image} source={{
       uri: image
@@ -12,7 +12,7 @@ export default({image, title, subTitle}) => (
       </View>
     </Image>
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'white'
   }
-});
+})

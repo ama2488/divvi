@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   PanResponder,
@@ -7,23 +7,23 @@ import {
   View,
   Text,
   Image
-} from 'react-native';
+} from 'react-native'
 
-import FormContainer from '../components/formcontainer.js';
-import Label from '../components/label.js';
-import Button from '../components/button.js';
-import Header from '../components/header.js';
+import FormContainer from '../components/common/formcontainer.js'
+import Label from '../components/common/label.js'
+import Button from '../components/common/button.js'
+import Header from '../components/common/header.js'
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 export default class Profile extends Component {
   updateInterests = () => {
-    this.props.navigation.navigate('Interests');
+    this.props.navigation.navigate('Interests')
   };
   editProfile = () => {
-    this.props.navigation.navigate('EditProfile');
+    this.props.navigation.navigate('EditProfile')
   };
-  render() {
+  render () {
     return (
       <View style={{
         flex: 1,
@@ -39,18 +39,18 @@ export default class Profile extends Component {
           borderWidth: 2,
           borderColor: 'white'
         }} source={require('../images/animals.jpg')}/>
-        <Button label="Update Interests" styles={{
+        <Button label='Update Interests' styles={{
           label: styles.buttonWhiteText
         }} onPress={() => {
           this.updateInterests()
         }}/>
-        <Button label="Edit Profile" styles={{
+        <Button label='Edit Profile' styles={{
           label: styles.buttonWhiteText
         }} onPress={() => {
           this.editProfile()
         }}/>
       </View>
-    );
+    )
   }
 }
 
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 50,
-    fontSize: 30,
+    fontSize: 30
     // backgroundColor: '#FFF'
   },
   buttonWhiteText: {
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
   footer: {
     marginTop: 5
   }
-});
+})

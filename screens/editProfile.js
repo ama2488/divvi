@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   PanResponder,
@@ -6,20 +6,20 @@ import {
   Dimensions,
   View,
   Text
-} from 'react-native';
+} from 'react-native'
 
-import FormContainer from '../components/formcontainer.js';
-import Label from '../components/label.js';
-import Button from '../components/button.js';
-import Header from '../components/header.js';
+import FormContainer from '../components/common/formcontainer.js'
+import Label from '../components/common/label.js'
+import Button from '../components/common/button.js'
+import Header from '../components/common/header.js'
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 export default class EditProfile extends Component {
   onSave = () => {
-    this.props.navigation.goBack();
+    this.props.navigation.goBack()
   };
-  render() {
+  render () {
     return (
       <View style={{
         flex: 1,
@@ -28,13 +28,13 @@ export default class EditProfile extends Component {
         justifyContent: 'center'
       }}>
         <Header text={'Edit Profile'}></Header>
-        <Button label="Save" styles={{
+        <Button label='Save' styles={{
           label: styles.buttonWhiteText
         }} onPress={() => {
           this.onSave()
         }}/>
       </View>
-    );
+    )
   }
 }
 
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 50,
-    fontSize: 30,
+    fontSize: 30
     // backgroundColor: '#FFF'
   },
   buttonWhiteText: {
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
   footer: {
     marginTop: 5
   }
-});
+})

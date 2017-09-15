@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   PanResponder,
@@ -8,18 +8,19 @@ import {
   Text,
   ScrollView,
   Image,
-  TouchableHighlight
-} from 'react-native';
+  TouchableOpacity,
+  AsyncStorage
+} from 'react-native'
 
-import FormContainer from '../components/formcontainer.js';
-import Label from '../components/label.js';
-import Button from '../components/button.js';
+import FormContainer from '../components/common/formcontainer.js'
+import Label from '../components/common/label.js'
+import Button from '../components/common/button.js'
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 export default class Interests extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       interests: [
         {
@@ -72,84 +73,92 @@ export default class Interests extends Component {
           src: require('../images/disabled.jpg')
         }
       ]
-    };
+    }
   };
 
-  updateInterests(interest) {
-    let index = this.state.interests.indexOf(interest);
-    let updatedInterests = [...this.state.interests];
+  componentWillMount = () => {
+    const self = this
+    AsyncStorage.getItem('Interests').then((res) => {
+      if (res) {
+        self.setState(JSON.parse(res))
+      }
+    })
+  }
 
-    updatedInterests[index].selected = (interest.selected)
-      ? false
-      : true;
+  updateInterests (interest) {
+    let index = this.state.interests.indexOf(interest)
+    let updatedInterests = [...this.state.interests]
 
-    this.setState({interests: updatedInterests});
-    console.log(this.state);
+    updatedInterests[index].selected = !(interest.selected)
+
+    this.setState({ interests: updatedInterests })
+    console.log(this.state)
   }
 
   onSave = () => {
-    this.props.navigation.goBack();
+    AsyncStorage.setItem('Interests', JSON.stringify(this.state))
+    this.props.navigation.goBack()
   };
 
-  getPairsArray(interests) {
-    var pairs_r = [];
-    var pairs = [];
-    var count = 0;
+  getPairsArray (interests) {
+    var pairs_r = []
+    var pairs = []
+    var count = 0
     interests.forEach((item) => {
-      count += 1;
-      pairs.push(item);
+      count += 1
+      pairs.push(item)
       if (count == 2) {
         pairs_r.push(pairs)
-        count = 0;
-        pairs = [];
+        count = 0
+        pairs = []
       }
-    });
-    return pairs_r;
+    })
+    return pairs_r
   }
 
-  renderGallery() {
-    var count = 0;
-    var previous_item = '';
-    var pairs = this.getPairsArray(this.state.interests);
+  renderGallery () {
+    var count = 0
+    var previous_item = ''
+    var pairs = this.getPairsArray(this.state.interests)
     return pairs.map((item, index) => {
       return (
         <View style={styles.item} key={index}>
-          <Image resizeMode={Image.resizeMode.cover} style={(item[0].selected)
-            ? styles.selectedPhoto
-            : styles.photo} source={item[0].src}>
-            <TouchableHighlight onPress={() => {
+          <Image resizeMode={Image.resizeMode.cover}
+            style={(item[0].selected) ? styles.selectedPhoto : styles.photo}
+            source={item[0].src}>
+            <TouchableOpacity onPress={() => {
               this.updateInterests(item[0])
             }}>
               <Text style={styles.label}>{item[0].label}</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </Image>
           <Image resizeMode={Image.resizeMode.cover} style={(item[1].selected)
             ? styles.selectedPhoto
             : styles.photo} source={item[1].src}>
-            <TouchableHighlight onPress={() => {
+            <TouchableOpacity onPress={() => {
               this.updateInterests(item[1])
             }}>
               <Text style={styles.label}>{item[1].label}</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </Image>
         </View>
-      );
-    });
+      )
+    })
   }
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.gallery}>
           {this.renderGallery()}
         </ScrollView>
-        <Button label="Save" styles={{
+        <Button label='Save' styles={{
           button: styles.hover,
           label: styles.buttonWhiteText
         }} onPress={() => {
           this.onSave()
         }}/>
       </View>
-    );
+    )
   }
 }
 const styles = StyleSheet.create({
@@ -190,23 +199,25 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     marginRight: 10,
-    marginTop: 25,
+    marginTop: 20,
     borderRadius: 100,
-    backgroundColor: '#FE6D64',
+    backgroundColor: 'rgba(0,0,0,0.2)',
     height: 90,
     width: 90,
-    opacity: 50
+    opacity: 1
   },
   selectedPhoto: {
     flex: 1,
     height: 200,
-    borderWidth: 2,
-    borderColor: 'green'
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    borderWidth: 5,
+    borderColor: '#84E1BF'
   },
   label: {
-    fontSize: 20,
+    fontSize: 25,
     backgroundColor: 'transparent',
     color: 'white',
-    alignSelf: 'center'
+    marginTop: 75,
+    textAlign: 'center'
   }
-});
+})

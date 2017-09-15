@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
-import {StyleSheet, Text} from 'react-native';
+import { StyleSheet, Text } from 'react-native'
 
 const Label = (props) => {
   return (
@@ -9,7 +9,7 @@ const Label = (props) => {
       : styles.textLabel}>
       {props.text}
     </Text>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: 'grey'
   }
-});
+})
 
-export default Label;
+export default Label
