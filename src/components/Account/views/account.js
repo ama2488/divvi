@@ -7,23 +7,23 @@ import {
   View,
   Text
 } from 'react-native'
+import { connect } from 'react-redux'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
 import RNSecureKeyStore from 'react-native-secure-key-store'
+// Import our contract artifacts and turn them into usable abstractions.
+import divvicoinArtifacts from '../../../../build/contracts/DivviCoin.json'
+import Button from '../../common/button'
+import Header from '../../common/header'
 
 let web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://5516f622.ngrok.io'))
-
-// Import our contract artifacts and turn them into usable abstractions.
-import divvicoinArtifacts from '../build/contracts/DivviCoin.json'
-import Button from '../components/common/button.js'
-import Header from '../components/common/header.js'
 
 const { width, height } = Dimensions.get('window')
 const DivviCoin = contract(divvicoinArtifacts)
 DivviCoin.setProvider(web3.currentProvider)
 
-export default class Account extends Component {
+class Account extends Component {
   constructor () {
     super()
     this.state = {
@@ -97,6 +97,8 @@ componentWillMount = () => {
     )
   }
 }
+
+export default Account
 
 const styles = StyleSheet.create({
   buttonWhiteText: {

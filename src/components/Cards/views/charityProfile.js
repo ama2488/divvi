@@ -10,10 +10,8 @@ import {
   ScrollView
 } from 'react-native'
 
-import FormContainer from '../components/common/formcontainer.js'
-import Label from '../components/common/label.js'
-import Button from '../components/common/button.js'
-import Header from '../components/common/header.js'
+import Button from '../../common/button'
+import Header from '../../common/header'
 
 const { width, height } = Dimensions.get('window')
 

@@ -6,52 +6,56 @@ import {
   Dimensions,
   View,
   TextInput,
-  ScrollView,
-  Text
+  Text,
+  ScrollView
 } from 'react-native'
-import FormContainer from '../components/common/formcontainer.js'
+
+import Container from '../components/common/container.js'
 import Label from '../components/common/label.js'
 import Button from '../components/common/button.js'
 
 const { width, height } = Dimensions.get('window')
 
-export default class SignIn extends Component {
-  onSignUp = () => {
-    this.props.navigation.navigate('Register')
-  };
+export default class SignUp extends Component {
   onSignIn = () => {
+    this.props.navigation.navigate('Login')
+  };
+  onSubmit = () => {
     this.props.navigation.navigate('Tabs')
   };
+
   render () {
     return (
       <ScrollView style={styles.scroll}>
-        <FormContainer>
+        <Container>
           <Text style={styles.header}>
             D I V V I
           </Text>
-        </FormContainer>
-        <FormContainer>
+        </Container>
+        <Container>
           <Label text='Password'/>
+          <TextInput style={styles.textInput}/>
+        </Container>
+        <Container>
+          <Label text='Repeat Password'/>
           <TextInput secureTextEntry={true} style={styles.textInput}/>
-        </FormContainer>
-        <Button label='Select account from keychain' styles={{
-          button: styles.noBorder,
-          label: styles.label
-        }}/>
-        <FormContainer>
-          <Button label='Submit' styles={{
-            label: styles.buttonWhiteText
-          }} onPress={() => {
-            this.onSignIn()
-          }}/>
-        </FormContainer>
-        <FormContainer>
-          <Button label='Create Account' styles={{
-            label: styles.buttonBlackText
-          }} onPress={() => {
-            this.onSignUp()
-          }}/>
-        </FormContainer>
+        </Container>
+        <View>
+          <Container>
+            <Button label='Create Account' styles={{
+              label: styles.buttonWhiteText
+            }} onPress={() => {
+              this.onSubmit()
+            }}/>
+          </Container>
+          <Container>
+            <Button label='Login' styles={{
+              label: styles.buttonBlackText
+            }} onPress={() => {
+              this.onSignIn()
+            }}/>
+          </Container>
+        </View>
       </ScrollView>
     )
   }
@@ -64,8 +68,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   label: {
-    color: '#84E1BF',
-    fontSize: 13
+    color: '#0d8898',
+    fontSize: 20
   },
   alignRight: {
     alignSelf: 'flex-end'
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     color: 'grey'
   },
   footer: {
-    marginTop: 0
+    marginTop: 5
   },
   header: {
     fontSize: 40,
@@ -93,8 +97,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
     marginBottom: 30
-  },
-  noBorder: {
-    borderWidth: 0
   }
 })

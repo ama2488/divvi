@@ -1,19 +1,16 @@
 import './shim.js'
-import React from 'react'
+import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
-import { TabNavigator } from 'react-navigation'
-import { Tabs, NavStack, Root } from './components/navigation.js'
+import TabBarNavigation from './src/components/Navigation/TabsNavigation'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import store from './store.js'
 
 export default class App extends React.Component {
   render () {
     return (
-      // <Provider store={createStore(() => [])}>
-    // <View>
-      <Root/>
-    // </View>
-      // </Provider>
+      <Provider store={store}>
+        <TabBarNavigation />
+      </Provider>
     )
   }
 }
