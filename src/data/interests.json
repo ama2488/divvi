@@ -1,0 +1,18 @@
+[
+  {"label":"animals","src":15},
+  {"label":"children","src":16},
+  {"label":"parks","src":17},
+  {"label":"public health","src":18},
+  {"label":"crime","src":19},
+  {"label":"mental health","src":20},
+  {"label":"environment","src":21},
+  {"label":"public_policy","src":22},
+  {"label":"developing nations","src":23},
+  {"label":"homelessness","src":24},
+  {"label":"LGBQT","src":25},
+  {"label":"reproductive health","src":26},
+  {"label":"veterans and military","src":27},
+  {"label":"education","src":28},
+  {"label":"technology","src":29},
+  {"label":"disabled","src":30}
+]

@@ -71,16 +71,18 @@ export default class Interests extends Component {
           label: 'disabled',
           src: require('../../../images/disabled.jpg')
         }
-      ],
-      isLoggedIn: false
+      ]
     }
   };
 
   componentWillMount = () => {
+    console.log(JSON.stringify(this.state))
     const self = this
     AsyncStorage.getItem('Interests').then((res) => {
       if (res) {
         self.setState(JSON.parse(res))
+      } else {
+        // self.setState(this.props.interests)
       }
     })
   }
@@ -92,6 +94,9 @@ export default class Interests extends Component {
     updatedInterests[index].selected = !(interest.selected)
 
     this.setState({ interests: updatedInterests })
+    let selected = this.state.interests.map((i) => {
+      return i.label
+    })
     AsyncStorage.setItem('Interests', JSON.stringify(this.state))
   }
 

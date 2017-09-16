@@ -18,10 +18,9 @@ DivviCoin.setProvider(web3.currentProvider)
 const DC = DivviCoin.deployed()
 
 const { width, height } = Dimensions.get('window')
-const owner = '0xabbddb3a442be91007ecbb06abeccf55ee414cf6'
+
 class Charities extends Component {
   componentWillMount = () => {
-    console.log(this.props)
     let interests
     let selected
     AsyncStorage.getItem('Interests').then((res) => {
@@ -48,7 +47,7 @@ class Charities extends Component {
         return div.transfer(this.props.user, parseInt(card.ad), { from: card.address })
       })
         .then((res) => {
-          this.props.updateBalance(parseInt(card.ad), 'decrease')
+          this.props.updateAd(card.id)
         })
     } else {
       DC.then((instance) => {
@@ -56,13 +55,17 @@ class Charities extends Component {
         return div.transfer(card.address, 1, { from: this.props.user })
       })
         .then((res) => {
-          this.props.updateDonation(1, 'increase')
+          this.props.updateCharity(card.id)
         })
     }
   }
 
   onLeft = (card) => {
-
+    if (card.ad) {
+      // update ad index
+    } else {
+      // update charity index
+    }
   }
 
   render () {
@@ -74,8 +77,9 @@ class Charities extends Component {
             onProfile={() => {
               onProfile(this.viewProfile)
             }}/>}>
-          {this.props.data.map(card => <Card
+          {this.props.data.charities.map(card => <Card
             key={card.id}
+            id={card.id}
             image={card.image}
             title={card.title}
             subTitle={card.subTitle}
