@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   AsyncStorage
 } from 'react-native'
-
+import SignIn from '../../SignIn/signin'
 import Button from '../../common/button'
 import Header from '../../common/header'
 
@@ -71,7 +71,8 @@ export default class Interests extends Component {
           label: 'disabled',
           src: require('../../../images/disabled.jpg')
         }
-      ]
+      ],
+      isLoggedIn: false
     }
   };
 
@@ -92,7 +93,6 @@ export default class Interests extends Component {
 
     this.setState({ interests: updatedInterests })
     AsyncStorage.setItem('Interests', JSON.stringify(this.state))
-    console.log(this.state)
   }
 
   getPairsArray (interests) {
@@ -143,6 +143,7 @@ export default class Interests extends Component {
   render () {
     return (
       <View style={styles.container}>
+        <SignIn />
         <Header text='Interests'></Header>
         <ScrollView style={styles.gallery}>
           {this.renderGallery()}

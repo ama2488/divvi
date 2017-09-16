@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { TabNavigator } from 'react-navigation'
 import { Icon, View } from 'react-native-elements'
-import SignIn from '../../screens/signin'
-import SignUp from '../../screens/signup'
 import Interests from '../Interests/views/interests.js'
 import AccountStack from '../Account/views/AccountNavigation'
 import CharityStack from '../Cards/views/CardNavigation'
@@ -35,11 +33,3 @@ export const Tabs = TabNavigator({
     showLabel: false
   }
 })
-
-export const tabBarReducer = (state, action) => {
-  if (action.type === 'JUMP_TO_TAB') {
-    return { ...state, ...action.payload }
-  } else {
-    return Tabs.router.getStateForAction(action, state)
-  }
-}

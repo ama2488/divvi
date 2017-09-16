@@ -27,11 +27,9 @@ class Account extends Component {
   constructor () {
     super()
     this.state = {
-      accounts: null,
-      account: null,
       owner: null,
-      balance: null,
-      donations: null
+      balance: 0,
+      donations: 0
     }
   };
 
@@ -49,7 +47,7 @@ componentWillMount = () => {
     }
     self.setState({
       owner: accs[0],
-      account: accs[0]
+      account: this.props.user
     })
 
     this.refreshBalance()
@@ -60,14 +58,14 @@ componentWillMount = () => {
     let div
     DivviCoin.deployed().then(function (instance) {
       div = instance
-      return div.balanceOf.call(self.state.account, { from: self.state.account })
+      return div.balanceOf.call(self.props.user)
     }).then(function (value) {
       self.setState({ balance: value.valueOf() })
-      return div.balanceOfDonations.call(self.state.account)
+      return div.balanceOfDonations.call(self.props.user)
     })
       .then((bal) => {
+        console.log(bal, 'DONA BAL')
         self.setState({ donations: bal.valueOf() })
-        console.log(self.state)
       })
       .catch(function (e) {
         console.log(e)
@@ -98,7 +96,11 @@ componentWillMount = () => {
   }
 }
 
-export default Account
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(Account)
 
 const styles = StyleSheet.create({
   buttonWhiteText: {
