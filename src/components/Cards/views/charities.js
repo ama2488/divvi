@@ -11,7 +11,7 @@ import divvicoinArtifacts from '../../../../build/contracts/DivviCoin.json'
 import * as actions from '../../../actions'
 
 let web3 = new Web3()
-web3.setProvider(new web3.providers.HttpProvider('http://5516f622.ngrok.io'))
+web3.setProvider(new web3.providers.HttpProvider('http://c0a30578.ngrok.io'))
 
 const DivviCoin = contract(divvicoinArtifacts)
 DivviCoin.setProvider(web3.currentProvider)

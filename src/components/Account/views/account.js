@@ -17,7 +17,7 @@ import Button from '../../common/button'
 import Header from '../../common/header'
 
 let web3 = new Web3()
-web3.setProvider(new web3.providers.HttpProvider('http://5516f622.ngrok.io'))
+web3.setProvider(new web3.providers.HttpProvider('http://c0a30578.ngrok.io'))
 
 const { width, height } = Dimensions.get('window')
 const DivviCoin = contract(divvicoinArtifacts)

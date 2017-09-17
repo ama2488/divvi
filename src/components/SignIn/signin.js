@@ -21,18 +21,11 @@ const { width, height } = Dimensions.get('window')
 class SignIn extends Component {
   state = {
     signIn: false,
-    signUp: false
+    signUp: true
   }
   componentWillMount = () => {
-    console.log(this.props)
-    AsyncStorage.getItem('user').then((user) => {
-      if (user) {
-        this.props.getUser(user.address)
-      } else {
-        this.setState({ signIn: true })
-      }
-    })
-  }
+    this.setState({ signIn: true })
+}
   onSignUp = (isSignUp, isSignIn) => {
     this.setState({ signUp: isSignUp, signIn: isSignIn })
   };
@@ -40,7 +33,7 @@ class SignIn extends Component {
     this.setState({ signIn: isSignIn, signUp: isSignUp })
   };
   onSubmit = (visible) => {
-    this.props.getUser('0x9865c6619405837627f7d01a66e43873e1e54708')
+    this.props.getUser('0xdb1248c95a6cef3eace6e44f56fd3c1ff7ccac73')
     this.setState({ signIn: visible, signUp: visible })
   }
   render () {
