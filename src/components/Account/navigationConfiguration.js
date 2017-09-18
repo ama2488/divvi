@@ -1,10 +1,8 @@
 import { StackNavigator } from 'react-navigation'
-// Screens
 import Account from './views/account'
-import Purchase from './views/purchase'
+
 const routeConfiguration = {
-  Account: { screen: Account },
-  Purchase: { screen: Purchase }
+  Account: { screen: Account }
 }
 const stackNavigatorConfiguration = {
   headerMode: 'none',

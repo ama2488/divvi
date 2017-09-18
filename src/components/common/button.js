@@ -26,14 +26,11 @@ const Button = (props) => {
 
 const styles = StyleSheet.create({
   button: {
+    backgroundColor: 'rgba(255,255,255,.2)',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    borderStyle: 'solid',
-    borderColor: 'white',
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: 'white'
+    borderRadius: 30
   }
 })
 

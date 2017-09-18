@@ -51,7 +51,7 @@ export default class Animator extends Component {
             x: 3 * -180,
             y: 0
           },
-          duration: 400
+          duration: 200
         }).start(onTossLeft)
       }
       if (toss === 'right') {
@@ -60,7 +60,7 @@ export default class Animator extends Component {
             x: 3 * 180,
             y: 0
           },
-          duration: 400
+          duration: 200
         }).start(onTossRight)
       }
     }

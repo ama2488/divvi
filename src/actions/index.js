@@ -2,6 +2,10 @@ export const getUser = (userId) => {
   return { type:'SIGNIN', payload: userId }
 }
 
+export const toTab = (state) => {
+  return { type: 'JUMP_TO_TAB', payload: state}
+}
+
 export const createUser = (userObj) => {
   return { type: 'SIGNUP', payload: userObj }
 }
@@ -24,4 +28,21 @@ export const getAds = (ads, interests) => {
 
 export const updateIndex = (index) => {
   return { type: 'UPDATE_INDEX', payload: index }
+}
+
+export const passCard = (card) => {
+  return {type: 'PASS_CARD', payload: card}
+}
+
+export const removeCard = (card, amount) => {
+  card.amount = amount
+  return {type: 'REMOVE_CARD', payload: card}
+}
+
+export const updateHistory = (history) => {
+  return {type:'LOAD_HISTORY', payload:history}
+}
+
+export const updateDonation =(data) =>{
+  return {type: 'UPDATE_DONATION', payload: data}
 }

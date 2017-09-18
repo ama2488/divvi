@@ -7,29 +7,45 @@ import {
   View,
   Text,
   Image,
-  ScrollView
+  ScrollView,
+  Modal,
+  WebView,
+  AsyncStorage
 } from 'react-native'
-
+import {connect} from 'react-redux'
+import {Container} from 'native-base'
 import Button from '../../common/button'
 import Header from '../../common/header'
+import * as actions from '../../../actions'
 
 const { width, height } = Dimensions.get('window')
 
-export default class CharityProfile extends Component {
+class CharityProfile extends Component {
+  state = {
+    showAd: false,
+  }
+  componentWillMount = () => {
+    if (this.props.navigation.state.params.ad){
+      this.setState({showAd: true});
+      setTimeout(()=>{
+        this.setState({showAd:false})
+        this.props.removeCard(this.props.navigation.state.params, `${this.props.navigation.state.params.ad} DIV`)
+        AsyncStorage.setItem('History', JSON.stringify(this.props.history))
+        this.props.navigation.navigate('Charities', this.props.navigation.state.params)
+      }, 60000)
+    }
+  }
   onBack = () => {
-    console.log()
     this.props.navigation.goBack()
   };
+  onComplete = () => {
+
+  }
   render () {
     return (
-      <View style={{
-        flex: 1,
-        backgroundColor: '#84E1BF',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
+      <Container>
+      <Header title={this.props.navigation.state.params.title}></Header>
         <ScrollView>
-          <Header text={this.props.navigation.state.params.title}></Header>
           <Text style={styles.label}>
             {this.props.navigation.state.params.subTitle}
           </Text>
@@ -42,14 +58,31 @@ export default class CharityProfile extends Component {
             this.onBack()
           }}/>
         </ScrollView>
-      </View>
+        <Modal onComplete={()=>{this.onComplete()}} animationType='none'
+        transparent={false}
+        visible={this.state.showAd}>
+        <WebView
+      source={{uri:this.props.navigation.state.params.url}}
+      style={{height: height, width: width}}
+      mediaPlaybackRequiresUserAction={false}
+      allowsInlineMediaPlayback={true}
+      bounces={false}
+      />
+        </Modal>
+      </Container>
     )
   }
 }
 
+const mapStateToProps = (state) => {
+  return {history: state.data.history}
+}
+
+export default connect(mapStateToProps, actions)(CharityProfile)
+
 const styles = StyleSheet.create({
   scroll: {
-    backgroundColor: '#E1D7D8',
+    backgroundColor: '#FFF',
     padding: 30,
     flexDirection: 'column'
   },

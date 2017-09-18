@@ -11,7 +11,8 @@ import {
   TouchableOpacity,
   AsyncStorage
 } from 'react-native'
-import SignIn from '../../SignIn/signin'
+import {Container} from 'native-base'
+import Login from '../../SignIn/login'
 import Button from '../../common/button'
 import Header from '../../common/header'
 
@@ -76,13 +77,10 @@ export default class Interests extends Component {
   };
 
   componentWillMount = () => {
-    console.log(JSON.stringify(this.state))
     const self = this
     AsyncStorage.getItem('Interests').then((res) => {
       if (res) {
         self.setState(JSON.parse(res))
-      } else {
-        // self.setState(this.props.interests)
       }
     })
   }
@@ -147,13 +145,15 @@ export default class Interests extends Component {
   }
   render () {
     return (
+      <Container>
+      <Header title='Interests'/>
       <View style={styles.container}>
-        <SignIn />
-        <Header text='Interests'></Header>
+        <Login />
         <ScrollView style={styles.gallery}>
           {this.renderGallery()}
         </ScrollView>
       </View>
+      </Container>
     )
   }
 }
@@ -161,14 +161,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#84E1BF'
+    backgroundColor: '#FFF'
   },
   gallery: {
     flexDirection: 'column'
   },
   tabs: {
     flexDirection: 'row',
-    backgroundColor: '#84E1BF',
+    backgroundColor: '#99e6e6',
     padding: 20
   },
   tab: {
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     height: 200,
     backgroundColor: 'rgba(0,0,0,0.2)',
     borderWidth: 5,
-    borderColor: '#84E1BF'
+    borderColor: '#99e6e6'
   },
   label: {
     fontSize: 25,

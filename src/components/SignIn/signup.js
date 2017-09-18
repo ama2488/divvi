@@ -18,33 +18,40 @@ import Container from '../common/container'
 
 const { width, height } = Dimensions.get('window')
 
-export default class SignIn extends Component {
+export default class SignUp extends Component {
   render () {
     return (
-      <ScrollView style={styles.scroll}>
-        <Container>
-          <Text style={styles.header2}>
-        D I V V I
-          </Text>
-        </Container>
-        <Container >
-          <TextInput placeholder={'password'} placeholderTextColor={'grey'} secureTextEntry={true} style={styles.textInput2}/>
-        </Container>
-        <Container>
-          <Button label='Submit' styles={{
-            label: styles.buttonWhiteText
-          }} onPress={() => {
-            this.props.onSubmit()
-          }}/>
-        </Container>
-        <Container>
-          <Button label='Create Account' styles={{
-            label: styles.buttonBlackText
-          }} onPress={() => {
-            this.props.onSignUp()
-          }}/>
-        </Container>
-      </ScrollView>
+          <ScrollView style={styles.scroll}>
+            <Container>
+              <Text style={styles.header}>
+            D I V V I
+              </Text>
+            </Container>
+            <Container>
+              <TextInput placeholder={'password'} placeholderTextColor={'grey'} secureTextEntry={true} style={styles.textInput}/>
+            </Container>
+            <Container>
+              <TextInput placeholder={'repeat password'} placeholderTextColor={'grey'} secureTextEntry={true} style={styles.textInput}/>
+            </Container>
+            <View>
+            <Button label='Import wallet or account' styles={{
+              button: styles.noBorder,
+              label: styles.label
+            }}/>
+              <Container>
+                <Button label='Create Account' styles={{
+                  label: styles.buttonWhiteText
+                }} onPress={() => {
+                  this.props.onSubmit()
+                }}/>
+              </Container>
+              <Container>
+                <Button label='Login' styles={{
+                  label: styles.buttonBlackText
+                }} onPress={() => {this.props.onSignIn()}}/>
+              </Container>
+            </View>
+          </ScrollView>
     )
   }
 }

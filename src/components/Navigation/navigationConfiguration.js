@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { TabNavigator } from 'react-navigation'
-import { Icon, View } from 'react-native-elements'
+import { Icon } from 'react-native-elements'
 import Interests from '../Interests/views/interests.js'
 import AccountStack from '../Account/views/AccountNavigation'
 import CharityStack from '../Cards/views/CardNavigation'
@@ -11,24 +11,30 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       title: 'Interests',
       tabBarLabel: 'Interests',
-      tabBarIcon: ({ tintColor }) => <Icon name={ 'superpowers' } type={'font-awesome'} size={25} color={tintColor}/>
+      tabBarIcon: ({ tintColor }) => <Icon name={ 'star' } type={'evilicon'} size={40} color={tintColor}/>
     }
   },
   Charities: {
-    screen: CharityStack
+    screen: CharityStack,
+    portraitOnlyMode: true,
+    animationType:'none'
   },
   Account: {
     screen: AccountStack
   }
 }, {
+  initialRouteName: 'Charities',
+  animationEnabled: false,
+  portraitOnlyMode: true,
   tabBarOptions: {
-    activeTintColor: '#84E1BF',
+    activeTintColor: '#99e6e6',
     inactiveTintColor: 'white',
     labelStyle: {
       fontSize: 12
     },
     style: {
-      backgroundColor: '#283940'
+      backgroundColor: '#283940',
+      height:50
     },
     showLabel: false
   }

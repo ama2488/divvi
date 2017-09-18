@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { StyleSheet, PanResponder, Animated, Dimensions, AsyncStorage, Image } from 'react-native'
-import { Container, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon, Button } from 'native-base'
+import { StyleSheet, PanResponder, Animated, Dimensions, View, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
+import Container from '../container'
+import Card from '../card'
+import Actions from '../actions'
+import Button from '../../common/button'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
 import divvicoinArtifacts from '../../../../build/contracts/DivviCoin.json'
 import * as actions from '../../../actions'
-import Header from '../../common/header'
 
 let web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://c0a30578.ngrok.io'))
@@ -17,7 +19,7 @@ const DC = DivviCoin.deployed()
 
 const { width, height } = Dimensions.get('window')
 
-class Charities extends Component {
+class XCharities extends Component {
   componentWillMount = () => {
     let isAd = this.props.navigation.state.params
     let interests
@@ -52,66 +54,72 @@ class Charities extends Component {
     this.props.navigation.navigate('CharityProfile', card)
   };
 
-  onRight = (card, amount) => {
+  onRight = (card) => {
     let div
     if (card.ad) {
     this.props.navigation.navigate('CharityProfile', card)
     } else {
       DC.then((instance) => {
         div = instance
-        return div.transfer(card.address, amount, { from: this.props.user })
+        return div.transfer(card.address, 1, { from: this.props.user })
       })
         .then((res) => {
-          this.props.removeCard(card, `${amount} DIV`)
+          this.props.updateCharity(card.id)
+          this.props.removeCard(card)
           AsyncStorage.setItem('History', JSON.stringify(this.props.data.history))
-          setTimeout(()=>{this.forceUpdate()}, 2000)
+          this.forceUpdate()
         })
     }
   }
 
   onLeft = (card) => {
       this.props.passCard(card)
+      this.forceUpdate()
   }
 
-  render() {
-      return (
-        <Container style={{backgroundColor: '#FFF'}}>
-        <Header title={'DIVVI'}/>
-          <View>
-            <DeckSwiper
-              ref={(c) => this._deckSwiper = c}
-              dataSource={this.props.data.charities}
-              onSwipeRight={()=>{this.onRight(this.props.data.charities[0], 1)}}
-              onSwipeLeft={()=>{this.onLeft(this.props.data.charities[0])}}
-              renderItem={(item) =>
-                <Card style={{ elevation: 3 }}>
-                  <CardItem button onPress={()=>{this.viewProfile(item)}}>
-                    <Left>
-                      <Thumbnail source={{uri:item.image}} />
-                      <Body>
-                        <Text>{item.title}</Text>
-                        <Text note>{item.subTitle}</Text>
-                      </Body>
-                    </Left>
-                  </CardItem>
-                  <CardItem cardBody>
-                    <Image style={{ height: 300, flex: 1 }} source={{uri: item.image}} />
-                  </CardItem>
-                  <CardItem>
-                    <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                    <Text>{item.subTitle}</Text>
-                  </CardItem>
-                </Card>
-              }
-            />
-      </View>
+  render () {
+    return (
+      <View style={styles.container}>
+        <Container onTossLeft={card => this.onLeft(card)}
+          onTossRight={card => { this.onRight(card) }}
+          actionsBar={(toss, onProfile) => <Actions toss={toss}
+            onProfile={() => {
+              onProfile(this.viewProfile)
+            }}/>}>
+          {this.props.data.charities.map(card => <Card
+            key={card.id}
+            id={card.id}
+            image={card.image}
+            title={card.title}
+            subTitle={card.subTitle}
+            address={card.address}
+            ad={card.ad}
+            url={card.url}/>)}
         </Container>
-      );
-    }
+      </View>
+    )
+  }
 }
 
 const mapStateToProps = state => {
   return { data: state.data, user: state.user }
 }
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#FFF',
+    flex: 1
+  },
+  header: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100px',
+    color: 'white'
+  },
+  buttonWhiteText: {
+    fontSize: 20,
+    color: '#FFF'
+  }
+})
 
-export default connect(mapStateToProps, actions)(Charities)
+export default connect(mapStateToProps, actions)(XCharities)
