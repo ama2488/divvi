@@ -27,7 +27,7 @@ export const Tabs = TabNavigator({
   animationEnabled: false,
   portraitOnlyMode: true,
   tabBarOptions: {
-    activeTintColor: '#99e6e6',
+    activeTintColor: '#E6EFC2',
     inactiveTintColor: 'white',
     labelStyle: {
       fontSize: 12

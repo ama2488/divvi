@@ -24,8 +24,8 @@ class History extends Component {
            </CardItem>
            <CardItem>
            <Left>
-           <Icon active name="ios-git-compare" style={{color: 'green'}} size={20} />
-           <Text style={{color: 'green'}}>{item.amount}</Text>
+           <Icon active name="ios-git-compare" style={{color: '#3AAFA9'}} size={20} />
+           <Text style={{color: '#3AAFA9'}}>{item.amount}</Text>
            </Left>
            <Right>
            <Text note>{Moment(new Date(item.date)).fromNow()}</Text>

@@ -145,10 +145,10 @@ export default {
   // Tab
   tabDefaultBg: "#283940",
   topTabBarTextColor: "white",
-  topTabBarActiveTextColor: "#99e6e6",
+  topTabBarActiveTextColor: "#E6EFC2",
   topTabActiveBgColor: undefined,
-  topTabBarBorderColor: "#F2F1F1",
-  topTabBarActiveBorderColor: "#99e6e6",
+  topTabBarBorderColor: "#283940",
+  topTabBarActiveBorderColor: "#E6EFC2",
 
   // Header
   toolbarBtnColor: "#fff",
@@ -159,7 +159,7 @@ export default {
   toolbarInputColor: "#fff",
   searchBarHeight: platform === "ios" ? 30 : 40,
   toolbarInverseBg: "#222",
-  toolbarTextColor: "#99e6e6",
+  toolbarTextColor: "#E6EFC2",
   toolbarDefaultBorder: "#283940",
   iosStatusbar: "light-content",
   // get statusBarColor() {
@@ -209,7 +209,7 @@ export default {
   listBtnUnderlayColor: "#DDD",
 
   // Card
-  cardBorderColor: "#ccc",
+  cardBorderColor: '#283940',
 
   // Changed Variable
   listItemPadding: platform === "ios" ? 10 : 12,
@@ -259,7 +259,7 @@ export default {
 
   // Other
   borderRadiusBase: 2,
-  borderWidth: 1 / PixelRatio.getPixelSizeForLayoutSize(1),
+  borderWidth: 0 / PixelRatio.getPixelSizeForLayoutSize(1),
   contentPadding: 10,
 
   // get darkenHeader() {

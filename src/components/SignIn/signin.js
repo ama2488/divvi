@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   label: {
-    color: '#99e6e6',
+    color: '#E6EFC2',
     fontSize: 13
   },
   alignRight: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 40,
-    color: '#99e6e6',
+    color: '#E6EFC2',
     alignSelf: 'center',
     marginTop: 30,
     marginBottom: 40,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   header2: {
     fontSize: 40,
-    color: '#99e6e6',
+    color: '#E6EFC2',
     alignSelf: 'center',
     marginTop: 30,
     marginBottom: 70

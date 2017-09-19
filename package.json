@@ -46,6 +46,7 @@
     "react": "16.0.0-alpha.12",
     "react-native": "^0.47.0",
     "react-native-crypto": "^2.0.3",
+    "react-native-easy-grid": "^0.1.15",
     "react-native-elements": "^0.16.0",
     "react-native-http": "github:tradle/react-native-http#834492d",
     "react-native-key-value-store": "^1.0.1",

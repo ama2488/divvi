@@ -33,7 +33,7 @@ class Charities extends Component {
     }
     AsyncStorage.getItem('Interests').then((res) => {
       interests = JSON.parse(res)
-      selected = interests.interests.filter((i) => {
+      selected = interests.filter((i) => {
         if (i.selected) {
           return i
         }
@@ -75,7 +75,7 @@ class Charities extends Component {
 
   render() {
       return (
-        <Container style={{backgroundColor: '#FFF'}}>
+        <Container style={{backgroundColor: '#283940'}}>
         <Header title={'DIVVI'}/>
           <View>
             <DeckSwiper

@@ -9,6 +9,7 @@ import {
   Slider
 } from 'react-native'
 import { Container, Content, Card, CardItem, Text, Icon, Right, Thumbnail, Left, Body, Tab, Tabs, TabHeading, StyleProvider } from 'native-base'
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import { connect } from 'react-redux'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
@@ -81,16 +82,40 @@ componentWillMount = () => {
     return (
       <View style={{
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: '#283940',
       }}>
       <Header title={'Account'}/>
         <StyleProvider style={getTheme(material)}>
       <Tabs>
-          <Tab  heading={ <TabHeading activeTextStyle={{color: '#99e6e6'}}><Icon name="ios-analytics-outline" /><Text>Overview</Text></TabHeading>}>
-          <Text style={{ fontSize: 30, color: 'grey', margin: 15 }}> Balance: {this.state.balance} DIV</Text>
-          <Text style={{ fontSize: 30, color: 'grey', margin: 15 }}> Donations: {this.state.donations} DIV</Text>
+          <Tab style={{backgroundColor:'#283940'}} heading={ <TabHeading><Icon name="ios-analytics-outline" /><Text>Overview</Text></TabHeading>}>
+          <Grid>
+          <Row transparent style={{backgroundColor:'#A2D5AC'}}>
+          <Col >
+          </Col>
+          <Col style={styles.center}>
+          <Text style={{color: 'white'}}> Current Balance</Text>
+          <Text style={{color: 'white', fontSize:35}}> {this.state.balance} DIV</Text>
+          </Col>
+          </Row>
+          <Row transparent style={{backgroundColor:'#3AAFA9'}}>
+          <Col style={styles.center}>
+          <Text style={{color: 'white'}}> Total Donations</Text>
+          <Text style={{color: 'white', fontSize:35}}> {this.state.donations} DIV</Text>
+          </Col>
+          <Col>
+          </Col>
+          </Row>
+          <Row transparent style={{backgroundColor:'#557C83'}}>
+          <Col>
+          </Col>
+          <Col style={styles.center}>
+          <Text style={{color: 'white'}}> Donation Amount</Text>
+          <Text style={{color: 'white', fontSize:35}}> 1 DIV</Text>
+          </Col>
+          </Row>
+          </Grid>
           </Tab>
-          <Tab activeTextStyle={{color: '#99e6e6'}} heading={ <TabHeading><Icon name="ios-time-outline" /><Text>History</Text></TabHeading>}>
+          <Tab style={{backgroundColor:'#283940'}} heading={ <TabHeading><Icon name="ios-time-outline" /><Text>History</Text></TabHeading>}>
           <Container>
           <Content>
           <History/>
@@ -111,8 +136,8 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, actions)(Account)
 
 const styles = StyleSheet.create({
-  buttonWhiteText: {
-    fontSize: 20,
-    color: '#FFF'
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })

@@ -35,7 +35,7 @@ class Login extends Component {
     this.setState({ signIn: isSignIn, signUp: isSignUp })
   };
   onSubmit = (visible) => {
-    this.props.getUser('0xdb1248c95a6cef3eace6e44f56fd3c1ff7ccac73')
+    this.props.getUser('0x6771442aec04ba1f4e825779b6fa225d4a9d89d8')
     this.setState({ signIn: visible, signUp: visible })
   }
   render () {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   label: {
-    color: '#99e6e6',
+    color: '#E6EFC2',
     fontSize: 13
   },
   alignRight: {
@@ -105,14 +105,14 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 40,
-    color: '#99e6e6',
+    color: '#E6EFC2',
     alignSelf: 'center',
     marginTop: 30,
     marginBottom: 40
   },
   header2: {
     fontSize: 40,
-    color: '#99e6e6',
+    color: '#E6EFC2',
     alignSelf: 'center',
     marginTop: 30,
     marginBottom: 70
