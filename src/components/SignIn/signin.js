@@ -8,7 +8,7 @@ import {
   ScrollView,
   Text,
   Modal,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native'
 import { connect } from 'react-redux'
 import Label from '../common/label'
@@ -55,20 +55,6 @@ const styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column'
   },
-  label: {
-    color: '#E6EFC2',
-    fontSize: 13
-  },
-  alignRight: {
-    alignSelf: 'flex-end'
-  },
-  textInput: {
-    height: 50,
-    fontSize: 20,
-    borderBottomWidth: 1,
-    borderColor: 'white',
-    color:'white'
-  },
   textInput2: {
     height: 50,
     fontSize: 20,
@@ -85,26 +71,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#283940'
   },
-  footer: {
-    marginTop: 0
-  },
-  header: {
-    fontSize: 40,
-    color: '#E6EFC2',
-    alignSelf: 'center',
-    marginTop: 30,
-    marginBottom: 40,
-    fontWeight:'100'
-  },
   header2: {
     fontSize: 40,
     color: '#E6EFC2',
     alignSelf: 'center',
     marginTop: 30,
-    marginBottom: 70
-  },
-  noBorder: {
-    backgroundColor: 'transparent',
-    marginTop: 40
+    marginBottom: 70,
+    fontWeight:'100'
   }
 })

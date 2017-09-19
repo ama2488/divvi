@@ -70,7 +70,6 @@ componentWillMount = () => {
       return div.balanceOfDonations.call(self.props.user)
     })
       .then((bal) => {
-        console.log(bal, 'DONA BAL')
         self.setState({ donations: bal.valueOf() })
       })
       .catch(function (e) {

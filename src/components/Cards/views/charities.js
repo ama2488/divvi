@@ -84,7 +84,10 @@ class Charities extends Component {
               onSwipeRight={()=>{this.onRight(this.props.data.charities[0], 1)}}
               onSwipeLeft={()=>{this.onLeft(this.props.data.charities[0])}}
               renderItem={(item) =>
-                <Card style={{ elevation: 3 }}>
+                <Card style={{ elevation: 3, height: height }}>
+                  <CardItem cardBody>
+                    <Image style={{ height: 350, flex: 1 }} source={{uri: item.image}} />
+                  </CardItem>
                   <CardItem button onPress={()=>{this.viewProfile(item)}}>
                     <Left>
                       <Thumbnail source={{uri:item.image}} />
@@ -93,13 +96,6 @@ class Charities extends Component {
                         <Text note>{item.subTitle}</Text>
                       </Body>
                     </Left>
-                  </CardItem>
-                  <CardItem cardBody>
-                    <Image style={{ height: 300, flex: 1 }} source={{uri: item.image}} />
-                  </CardItem>
-                  <CardItem>
-                    <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                    <Text>{item.subTitle}</Text>
                   </CardItem>
                 </Card>
               }
