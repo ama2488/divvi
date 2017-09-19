@@ -8,7 +8,13 @@ class History extends Component {
   render () {
     let history;
     if (this.props.history && this.props.history.length > 0){
-      history = this.props.history.map(item =>
+      history = this.props.history.sort((a,b)=>{
+        let A = new Date(a.date)
+        let B = new Date(b.date)
+        if(A > B) return -1;
+        if(A < B) return 1;
+        return 0;})
+    .map(item =>
         <Card key={item.date}>
           <CardItem header >
           <Left>
