@@ -17,9 +17,6 @@ import Button from '../common/button.js'
 import * as actions from '../../actions'
 import SignUp from './signup'
 import SignIn from './signin'
-import RNSecureKeyStore from 'react-native-secure-key-store'
-
-console.log(RNSecureKeyStore, 'RNSKS')
 
 const { width, height } = Dimensions.get('window')
 

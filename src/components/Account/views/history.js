@@ -20,8 +20,8 @@ class History extends Component {
           <Left>
             <Thumbnail source={{uri: item.image}} />
             <Body>
-            <Text>{item.title}</Text>
-            <Text note>{item.subTitle}</Text>
+            <Text>{item.title ? item.title : item.name ? item.name : item.company}</Text>
+            <Text note>{item.subTitle ? item.subTitle : item.location ? item.location : `${item.coins} DIV`}</Text>
             </Body>
             </Left>
            </CardItem>

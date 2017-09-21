@@ -10,6 +10,8 @@ import Header from '../../common/header'
 
 let web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://c0a30578.ngrok.io'))
+const divviContract = web3.eth.contract(divvicoinArtifacts.abi)
+const contractInstance = divviContract.at('0xf8b22d267add336017f7a9c61a8cab4579220188')
 
 const DivviCoin = contract(divvicoinArtifacts)
 DivviCoin.setProvider(web3.currentProvider)
@@ -18,6 +20,9 @@ const DC = DivviCoin.deployed()
 const { width, height } = Dimensions.get('window')
 
 class Charities extends Component {
+  state={
+    tx: null
+  }
   componentWillMount = () => {
     let isAd = this.props.navigation.state.params
     let interests
@@ -25,10 +30,11 @@ class Charities extends Component {
     if (isAd){
         DC.then((instance) => {
           div = instance
-          return div.transfer(this.props.user, parseInt(isAd.ad), { from: isAd.address })
+          return div.transfer(this.props.user, parseInt(isAd.coins), { from: isAd.address })
         })
           .then((res) => {
-            this.props.updateAd(isAd.id)
+            // this.props.updateAd(isAd.id)
+            console.log(res)
           })
     }
     AsyncStorage.getItem('Interests').then((res) => {
@@ -40,6 +46,14 @@ class Charities extends Component {
       }).map((t) => {
         return t.label
       })
+      // fetch('https://localhost:8080/charities/', {method: 'POST'})
+      //   .then((response) => response.json())
+      //   .then((responseJson) => {
+      //     this.props.getChars(responseJson, selected )
+      //   })
+      //   .catch((error) => {
+      //     console.error(error);
+      //   });
     })
     AsyncStorage.getItem('History').then((res)=>{
       if (res){
@@ -54,18 +68,25 @@ class Charities extends Component {
 
   onRight = (card, amount) => {
     let div
-    if (card.ad) {
+    if (card.coins) {
     this.props.navigation.navigate('CharityProfile', card)
     } else {
-      DC.then((instance) => {
-        div = instance
-        return div.transfer(card.address, amount, { from: this.props.user })
-      })
-        .then((res) => {
+      let transaction = contractInstance.transfer.getData(card.address, amount)
+      // console.log(transaction)
+      // DC.then((instance) => {
+      //   div = instance
+      //   return div.transfer(card.address, amount, { from: this.props.user })
+      // })
+      //   .then((res) => {
+          this.setState({tx: transaction})
           this.props.removeCard(card, `${amount} DIV`)
-          AsyncStorage.setItem('History', JSON.stringify(this.props.data.history))
-          setTimeout(()=>{this.forceUpdate()}, 2000)
-        })
+          // AsyncStorage.setItem('History', JSON.stringify(this.props.data.history))
+          setTimeout(()=>{this.forceUpdate();
+            console.log(this.state.tx);
+            console.log(card.address);
+            console.log(card.address.toString('hex'))
+          }, 2000)
+        // })
     }
   }
 
@@ -92,8 +113,10 @@ class Charities extends Component {
                     <Left>
                       <Thumbnail source={{uri:item.image}} />
                       <Body>
-                        <Text>{item.title}</Text>
-                        <Text note>{item.subTitle}</Text>
+                        <Text>{item.name}</Text>
+                        {item.location ?
+                          <Text note>{item.location}</Text> :
+                          <Text note>{`${item.coins} DIV`}</Text>}
                       </Body>
                     </Left>
                   </CardItem>

@@ -23,10 +23,10 @@ import Expo, {Font} from 'expo'
 import * as actions from '../../../actions'
 import History from './history'
 
+const { width, height } = Dimensions.get('window')
 
 let web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://c0a30578.ngrok.io'))
-const { width, height } = Dimensions.get('window')
 const DivviCoin = contract(divvicoinArtifacts)
 DivviCoin.setProvider(web3.currentProvider)
 
@@ -41,28 +41,13 @@ class Account extends Component {
   };
 
 componentWillMount = () => {
-  let self = this
-  web3.eth.getAccounts((err, accs) => {
-    if (err != null) {
-      alert('There was an error fetching your accounts.')
-      return
-    }
-
-    if (accs.length == 0) {
-      alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.")
-      return
-    }
-    self.setState({
-      owner: accs[0],
-      account: this.props.user,
-    })
+    this.setState({account: this.props.user})
     this.refreshBalance()
-  })
 }
-  refreshBalance = () => {
+refreshBalance = () => {
     let self = this
     let div
-    DivviCoin.deployed().then(function (instance) {
+    DivviCoin.deployed().then((instance) => {
       div = instance
       return div.balanceOf.call(self.props.user)
     }).then(function (value) {
