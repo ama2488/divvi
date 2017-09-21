@@ -13,7 +13,6 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import { connect } from 'react-redux'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
-import RNSecureKeyStore from 'react-native-secure-key-store'
 import divvicoinArtifacts from '../../../../build/contracts/DivviCoin.json'
 import Button from '../../common/button'
 import Header from '../../common/header'

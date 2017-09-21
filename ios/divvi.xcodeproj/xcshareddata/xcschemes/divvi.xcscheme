@@ -3,9 +3,37 @@
    LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "YES"
+      parallelizeBuildables = "NO"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "49EF838C17BD36C7B662B24977242F53"
+               BuildableName = "libReact.a"
+               BlueprintName = "React"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "59D64F50788C2A5F44CF8A1ECBB912C2"
+               BuildableName = "libYoga.a"
+               BlueprintName = "Yoga"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
