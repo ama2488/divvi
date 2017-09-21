@@ -14,6 +14,7 @@
 		1CB2A092F79B4B71AFC44DEC /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4936B4EFD1D48238323CFE6 /* libRNVectorIcons.a */; };
 		26A1278ABE0940E3BF293629 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFB3D5BA88584E85B110E20D /* Zocial.ttf */; };
 		2FB4CA6DDDBB48D6A70BD73B /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21524D805BC1453E993F7591 /* Roboto_medium.ttf */; };
+		372853451F745D1F00F98980 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 372853441F745D1F00F98980 /* libReact.a */; };
 		481CA937FCBD4ED7A822BCB5 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A42878FF906F41F793EDEA83 /* Octicons.ttf */; };
 		4862E83088D347D89505DDF1 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEC3080DB16F4CF0BF1E75D9 /* Ionicons.ttf */; };
 		5CC131C494344F12B43AF9DB /* libRNRandomBytes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A07819C12494A67ABC056B4 /* libRNRandomBytes.a */; };
@@ -114,6 +115,7 @@
 		2E0422A1F89C4419AEA45F51 /* TcpSockets.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = TcpSockets.xcodeproj; path = "../node_modules/react-native-tcp/ios/TcpSockets.xcodeproj"; sourceTree = "<group>"; };
 		339E8AA3EE75402B92C6E3E6 /* libTcpSockets.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTcpSockets.a; sourceTree = "<group>"; };
 		35B4B67C8B8B43F4820C0F3F /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
+		372853441F745D1F00F98980 /* libReact.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libReact.a; path = "Pods/../build/Debug-iphoneos/React/libReact.a"; sourceTree = "<group>"; };
 		377EC4B91F74560C00F495DB /* RNRSA.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNRSA.xcodeproj; path = "../node_modules/react-native-rsa-native/ios/RNRSA.xcodeproj"; sourceTree = "<group>"; };
 		45FB6991D1124B86847C55F3 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		485388B6A1034206B868CC05 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				372853451F745D1F00F98980 /* libReact.a in Frameworks */,
 				EBB8117C1BFA0514F79CAF74 /* libPods-divvi.a in Frameworks */,
 				B7716893AAD641A19BD5D5C0 /* libRNOS.a in Frameworks */,
 				14BA24939D764147B289E504 /* libRNRSA.a in Frameworks */,
@@ -177,6 +180,7 @@
 		1A42804E64B7E9E0AB8B6799 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				372853441F745D1F00F98980 /* libReact.a */,
 				C4A88D15726AD99E8A257BC7 /* libPods-divvi.a */,
 			);
 			name = Frameworks;
@@ -373,7 +377,6 @@
 				TargetAttributes = {
 					B56386401DB9693800A0598C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = C8D8QTF339;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -526,13 +529,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-divvi-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8D34C7FE3D99F20E5EA1B18A /* [CP] Embed Pods Frameworks */ = {
@@ -556,9 +562,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-divvi/Pods-divvi-resources.sh",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/api.amplitude.com.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoCaLimitedRsaCertificationAuthority.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaCA.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaDomainValidationCA.der",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
+				"${PODS_ROOT}/GoogleAuthUtilities/Frameworks/frameworks/GoogleAuthUtilities.framework/Resources/GTMOAuth2ViewTouch.xib",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -689,7 +710,8 @@
 			baseConfigurationReference = 2C1548D9E4CB1AEFA5CCAE6D /* Pods-divvi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C8D8QTF339;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/divvi/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -702,10 +724,12 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/React",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amandaallen.divvi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -714,7 +738,8 @@
 			baseConfigurationReference = A47FE4D7F70906B7DC8CE39B /* Pods-divvi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C8D8QTF339;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/divvi/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -727,10 +752,12 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/React",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amandaallen.divvi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
