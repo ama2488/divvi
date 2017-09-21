@@ -37,15 +37,18 @@ class Charities extends Component {
             console.log(res)
           })
     }
-    AsyncStorage.getItem('Interests').then((res) => {
-      interests = JSON.parse(res)
-      selected = interests.filter((i) => {
-        if (i.selected) {
-          return i
-        }
-      }).map((t) => {
-        return t.label
-      })
+    // AsyncStorage.getItem('Interests').then((res) => {
+    //   console.log(res)
+    //   if (res !== {}){
+    //   interests = JSON.parse(res)
+    //   selected = interests.filter((i) => {
+    //     if (i.selected) {
+    //       return i
+    //     }
+    //   }).map((t) => {
+    //     return t.label
+    //   })
+    // }
       // fetch('https://localhost:8080/charities/', {method: 'POST'})
       //   .then((response) => response.json())
       //   .then((responseJson) => {
@@ -54,7 +57,7 @@ class Charities extends Component {
       //   .catch((error) => {
       //     console.error(error);
       //   });
-    })
+    // })
     AsyncStorage.getItem('History').then((res)=>{
       if (res){
         this.props.updateHistory(JSON.parse(res));
@@ -105,7 +108,7 @@ class Charities extends Component {
               onSwipeRight={()=>{this.onRight(this.props.data.charities[0], 1)}}
               onSwipeLeft={()=>{this.onLeft(this.props.data.charities[0])}}
               renderItem={(item) =>
-                <Card style={{ elevation: 3, height: height }}>
+                <Card style={{ elevation: 0, height: height, borderColor: '#283940' }}>
                   <CardItem cardBody>
                     <Image style={{ height: 350, flex: 1 }} source={{uri: item.image}} />
                   </CardItem>

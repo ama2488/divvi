@@ -1,5 +1,24 @@
 {
   "expo": {
-    "sdkVersion": "20.0.0"
+    "name": "divvi",
+    "icon": "",
+    "version": "0.0.0",
+    "slug": "divvi",
+    "orientation": "portrait",
+    "ios": {
+      "bundleIdentifier": "com.amandaallen.divvi",
+      "publishBundlePath": "ios/divvi/Supporting/shell-app.bundle",
+      "publishManifestPath": "ios/divvi/Supporting/shell-app-manifest.json"
+    },
+    "android": {
+      "package": "com.amandaallen.divvi"
+    },
+    "sdkVersion": "20.0.0",
+    "isDetached": true,
+    "detach": {
+      "scheme": "exp80a6a8069cc5437cb6c3712f83ba5121",
+      "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v1.19.2-sdk20.0.0-71c3afdd-3b31-4722-9657-bbf07ea645d8.tar.gz",
+      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v1.19.1-sdk20.0.0-5b613054-1239-439f-9c3a-0aad67cbe39a.tar.gz"
+    }
   }
 }

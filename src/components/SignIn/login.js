@@ -17,6 +17,8 @@ import Button from '../common/button.js'
 import * as actions from '../../actions'
 import SignUp from './signup'
 import SignIn from './signin'
+import {RSA, RSAKeychain} from 'react-native-rsa-native';
+
 
 const { width, height } = Dimensions.get('window')
 
@@ -37,6 +39,7 @@ class Login extends Component {
   onSubmit = (visible) => {
     this.props.getUser('0x6771442aec04ba1f4e825779b6fa225d4a9d89d8')
     this.setState({ signIn: visible, signUp: visible })
+    console.log(RSA, 'ahh')
   }
   render () {
     return (

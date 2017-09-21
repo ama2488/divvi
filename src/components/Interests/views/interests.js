@@ -24,8 +24,11 @@ class Interests extends Component {
   componentWillMount = () => {
     this.setState({interests:this.props.interests})
     AsyncStorage.getItem('Interests').then((res) => {
-      if (res) {
+      console.log(res, 'RESINTERESTS')
+      if (JSON.parse(res) !=={}) {
         this.setState({interests:JSON.parse(res)})
+      } else {
+        this.setState({interests:this.params.interests})
       }
     })
   }

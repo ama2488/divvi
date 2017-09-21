@@ -73,28 +73,28 @@ refreshBalance = () => {
       <Tabs>
           <Tab style={{backgroundColor:'#283940'}} heading={ <TabHeading><Icon name="ios-analytics-outline" /><Text>Overview</Text></TabHeading>}>
           <Grid>
-          <Row transparent style={{backgroundColor:'#A2D5AC'}}>
-          <Col >
-          </Col>
+          <Row style={{backgroundColor:'#A2D5AC', borderWidth:0}}>
           <Col style={styles.center}>
           <Text style={{color: 'white'}}> Current Balance</Text>
           <Text style={{color: 'white', fontSize:35}}> {this.state.balance} DIV</Text>
           </Col>
+          <Col>
+          </Col>
           </Row>
-          <Row transparent style={{backgroundColor:'#3AAFA9'}}>
+          <Row style={{backgroundColor:'#3AAFA9', borderWidth:1, borderColor: '#3AAFA9'}}>
+          <Col>
+          </Col>
           <Col style={styles.center}>
           <Text style={{color: 'white'}}> Total Donations</Text>
           <Text style={{color: 'white', fontSize:35}}> {this.state.donations} DIV</Text>
           </Col>
-          <Col>
-          </Col>
           </Row>
-          <Row transparent style={{backgroundColor:'#557C83'}}>
-          <Col>
-          </Col>
+          <Row style={{backgroundColor:'#557C83', borderWidth:0}}>
           <Col style={styles.center}>
           <Text style={{color: 'white'}}> Donation Amount</Text>
           <Text style={{color: 'white', fontSize:35}}> 1 DIV</Text>
+          </Col>
+          <Col>
           </Col>
           </Row>
           </Grid>
