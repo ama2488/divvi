@@ -13,7 +13,6 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.tradle.react.UdpSocketsModule;
 import com.peel.react.TcpSocketsModule;
 import com.reactlibrary.securekeystore.RNSecureKeyStorePackage;
-import com.RNRSA.RNRSAPackage;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.peel.react.rnos.RNOSModule;
 
@@ -31,7 +30,6 @@ public class MainApplication extends MultiDexApplication {
             new UdpSocketsModule(),
             new TcpSocketsModule(),
             new RNSecureKeyStorePackage(),
-            new RNRSAPackage(),
             new RandomBytesPackage(),
             new RNOSModule()
     );
