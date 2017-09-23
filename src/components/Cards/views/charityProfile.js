@@ -21,9 +21,10 @@ import * as actions from '../../../actions'
 
 let web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://c0a30578.ngrok.io'))
-const { width, height } = Dimensions.get('window')
 const DivviCoin = contract(divvicoinArtifacts)
 DivviCoin.setProvider(web3.currentProvider)
+
+const { width, height } = Dimensions.get('window')
 
 class CharityProfile extends Component {
   state = {
@@ -50,16 +51,14 @@ class CharityProfile extends Component {
   onBack = () => {
     this.props.navigation.goBack()
   };
-  onComplete = () => {
 
-  }
   render () {
     return (
 
       <Container style={{backgroundColor:'#283940'}}>
-              <Header title={'Profile'}></Header>
+              <Header title={'Profile'} balance={`${this.props.balance} DIV`}></Header>
               <Content>
-                <Card style={{flex: 0}}>
+                <Card style={{flex: 1}}>
                   <CardItem>
                     <Left>
                     <Image style={styles.image} source={{
@@ -113,7 +112,7 @@ class CharityProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {history: state.data.history}
+  return {history: state.data.history, balance: state.balance.balance}
 }
 
 export default connect(mapStateToProps, actions)(CharityProfile)

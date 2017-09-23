@@ -1,6 +1,7 @@
 import './shim.js'
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
+import {Root} from 'native-base'
 import TabBarNavigation from './src/components/Navigation/TabsNavigation'
 import { Provider } from 'react-redux'
 import store from './store.js'
@@ -20,9 +21,11 @@ export default class App extends React.Component {
   render () {
     return (
       this.state.fontLoaded ? (
+        <Root>
       <Provider store={store}>
         <TabBarNavigation />
       </Provider>
-      ): null
+      </Root>
+    ): null
     )}
 }

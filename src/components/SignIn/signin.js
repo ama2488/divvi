@@ -9,6 +9,7 @@ import {
   Text,
   Modal,
   AsyncStorage,
+  Image
 } from 'react-native'
 import { connect } from 'react-redux'
 import Label from '../common/label'
@@ -23,12 +24,12 @@ export default class SignIn extends Component {
     return (
       <ScrollView style={styles.scroll}>
         <Container>
-          <Text style={styles.header2}>
-        D I V V I
-          </Text>
+        <Container style={{alignItems:'center'}}>
+          <Image source={require('../../images/1.png')} style={{height:200, width: 200, alignSelf:'center'}}/>
+        </Container>
         </Container>
         <Container >
-          <TextInput placeholder={'password'} placeholderTextColor={'grey'} secureTextEntry={true} style={styles.textInput2}/>
+          <TextInput placeholder={'enter password'} placeholderTextColor={'grey'} secureTextEntry={true} style={styles.textInput2}/>
         </Container>
         <Container>
           <Button label='Submit' styles={{
@@ -41,7 +42,7 @@ export default class SignIn extends Component {
           <Button label='Create Account' styles={{
             label: styles.buttonBlackText
           }} onPress={() => {
-            this.props.onSignUp()
+            this.props.toggle()
           }}/>
         </Container>
       </ScrollView>
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: 'white',
     color:'white',
-    marginBottom: 50
+    marginBottom: 70
   },
   buttonWhiteText: {
     fontSize: 20,

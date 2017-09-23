@@ -14,12 +14,20 @@ export const updateAd = (adId) => {
   return { type: 'UPDATE_AD', payload: adId }
 }
 
+export const getBalances = (balance, donations) => {
+  return {type: 'GET_BALANCE', payload: {balance, donations}}
+}
+
 export const updateCharity = (charId) => {
   return { type: 'UPDATE_CHAR', payload: charId }
 }
 
 export const getChars = (chars, interests) => {
   return { type: 'GET_CHARITIES', payload: { chars, interests } }
+}
+
+export const refreshCharities = () => {
+  return { type: 'REFRESH_CHARITIES'}
 }
 
 export const getAds = (ads, interests) => {
@@ -43,6 +51,6 @@ export const updateHistory = (history) => {
   return {type:'LOAD_HISTORY', payload:history}
 }
 
-export const updateDonation =(data) =>{
+export const updateDonation = (data) =>{
   return {type: 'UPDATE_DONATION', payload: data}
 }

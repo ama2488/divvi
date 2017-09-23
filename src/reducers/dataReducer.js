@@ -4,7 +4,7 @@ import interests from '../data/interests.json'
 
 export const data = (state, action) => {
   if (state === undefined){
-    return { charities, interests}
+    return {charities, interests, donation: 1}
   }
   if (state.history === undefined){
     state.history = []
@@ -59,9 +59,17 @@ export const data = (state, action) => {
   state.ads = newAds
 }
 
-  if (action.type === 'LOAD_HISTORY') {
+if (action.type === 'LOAD_HISTORY') {
     state.history = action.payload
-  }
+}
+
+if(action.type === 'UPDATE_DONATION') {
+    state.donation = action.payload
+}
+
+if (action.type === 'REFRESH_CHARITIES') {
+  state.charities = charities
+}
 
   return state
 }

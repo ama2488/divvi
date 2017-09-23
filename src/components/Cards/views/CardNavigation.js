@@ -5,15 +5,12 @@ import { Icon } from 'react-native-elements'
 import {View} from 'react-native'
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state) => {
-  return {
-    navigationState: state.cards
-  }
-}
 class CardNavigation extends React.Component {
   static navigationOptions = {
     title: 'Browse',
     tabBarLabel: 'Browse',
+    animationEnabled: true,
+    animationType: 'fade',
     tabBarIcon: ({ tintColor }) => <View style={{
           height: 80,
           width: 80,
@@ -35,4 +32,11 @@ class CardNavigation extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    navigationState: state.cards
+  }
+}
+
 export default connect(mapStateToProps)(CardNavigation)
