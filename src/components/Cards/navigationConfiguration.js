@@ -8,6 +8,7 @@ const routeConfiguration = {
 }
 const stackNavigatorConfiguration = {
   headerMode: 'none',
-  initialRouteName: 'Charities'
+  initialRouteName: 'Charities',
+  transitionConfig: () => ({ screenInterpolator: () => null })
 }
 export const CharityStack = StackNavigator(routeConfiguration, stackNavigatorConfiguration)

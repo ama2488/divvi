@@ -6,6 +6,7 @@ const routeConfiguration = {
 }
 const stackNavigatorConfiguration = {
   headerMode: 'none',
-  initialRouteName: 'Account'
+  initialRouteName: 'Account',
+  transitionConfig: () => ({ screenInterpolator: () => null })
 }
 export const AccountStack = StackNavigator(routeConfiguration, stackNavigatorConfiguration)

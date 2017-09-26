@@ -4,7 +4,7 @@ import interests from '../data/interests.json'
 
 export const data = (state, action) => {
   if (state === undefined){
-    return { charities, interests}
+    return {charities, interests, donation: 1}
   }
   if (state.history === undefined){
     state.history = []
@@ -24,25 +24,52 @@ export const data = (state, action) => {
     state.charities = charities
     return state
   }
+
   if (action.type === 'GET_CHARITIES') {
-    newState.cardStatus.charities = action.payload.chars.filter((char) => {
-      let interests = action.payload.interests
-      if (interests.indexOf(char.tag) > 0) {
+    state.charities = action.payload.chars
+    let interests = action.payload.interests
+    let newChars = action.payload.chars.filter((char) => {
+      let match = false;
+      char.tags.forEach((t)=>{
+          if (interests.indexOf(t) > 0) {
+            match = true;
+          }
+      })
+      if (match){
         return char
       }
     })
+    state.charities = newChars
   }
+
   if (action.type === 'GET_ADS') {
-    newState.cardStatus.ads = action.payload.ads.filter((ad) => {
-      let interests = action.payload.interests
-      if (interests.indexOf(ad.tag) > 0) {
+    state.ads = action.payload.ads
+    let interests = action.payload.interests
+    let newAds = action.payload.chars.filter((ad) => {
+      let match = false;
+      ad.tags.forEach((t)=>{
+          if (interests.indexOf(t) > 0) {
+            match = true;
+          }
+      })
+      if (match){
         return ad
       }
-    })
-  }
-  if (action.type === 'LOAD_HISTORY') {
+  })
+  state.ads = newAds
+}
+
+if (action.type === 'LOAD_HISTORY') {
     state.history = action.payload
-  }
+}
+
+if(action.type === 'UPDATE_DONATION') {
+    state.donation = action.payload
+}
+
+if (action.type === 'REFRESH_CHARITIES') {
+  state.charities = charities
+}
 
   return state
 }

@@ -5,7 +5,6 @@ import {
   Animated,
   Dimensions,
   View,
-  Text,
   Image,
   ScrollView,
   Modal,
@@ -13,115 +12,119 @@ import {
   AsyncStorage
 } from 'react-native'
 import {connect} from 'react-redux'
-import {Container} from 'native-base'
-import Button from '../../common/button'
+import {Container, Content, Card, CardItem, Thumbnail, Text, Icon, Left, Body, Button, Right} from 'native-base'
 import Header from '../../common/header'
+import { default as Web3 } from 'web3'
+import { default as contract } from 'truffle-contract'
+import divvicoinArtifacts from '../../../../build/contracts/DivviCoin.json'
 import * as actions from '../../../actions'
+
+let web3 = new Web3()
+web3.setProvider(new web3.providers.HttpProvider('http://c0a30578.ngrok.io'))
+const DivviCoin = contract(divvicoinArtifacts)
+DivviCoin.setProvider(web3.currentProvider)
 
 const { width, height } = Dimensions.get('window')
 
 class CharityProfile extends Component {
   state = {
     showAd: false,
+    balance: 0
   }
   componentWillMount = () => {
-    if (this.props.navigation.state.params.ad){
+    if (this.props.navigation.state.params.coins){
       this.setState({showAd: true});
       setTimeout(()=>{
         this.setState({showAd:false})
-        this.props.removeCard(this.props.navigation.state.params, `${this.props.navigation.state.params.ad} DIV`)
+        this.props.removeCard(this.props.navigation.state.params, `${this.props.navigation.state.params.coins} DIV`)
         AsyncStorage.setItem('History', JSON.stringify(this.props.history))
         this.props.navigation.navigate('Charities', this.props.navigation.state.params)
       }, 60000)
     }
+    DivviCoin.deployed().then((instance)=>{
+      return instance.balanceOf(this.props.navigation.state.params.address, {from: this.props.navigation.state.params.address})
+    })
+    .then((balance)=>{
+      this.setState({balance: balance.valueOf()})
+    })
   }
   onBack = () => {
     this.props.navigation.goBack()
   };
-  onComplete = () => {
 
-  }
   render () {
     return (
-      <Container>
-      <Header title={this.props.navigation.state.params.title}></Header>
-        <ScrollView>
-          <Text style={styles.label}>
-            {this.props.navigation.state.params.subTitle}
-          </Text>
-          <Image style={styles.image} source={{
-            uri: this.props.navigation.state.params.image
-          }}/>
-          <Button label='Back' styles={{
-            label: styles.buttonWhiteText
-          }} onPress={() => {
-            this.onBack()
-          }}/>
-        </ScrollView>
-        <Modal onComplete={()=>{this.onComplete()}} animationType='none'
-        transparent={false}
-        visible={this.state.showAd}>
-        <WebView
-      source={{uri:this.props.navigation.state.params.url}}
-      style={{height: height, width: width}}
-      mediaPlaybackRequiresUserAction={false}
-      allowsInlineMediaPlayback={true}
-      bounces={false}
-      />
-        </Modal>
-      </Container>
+
+      <Container style={{backgroundColor:'#283940'}}>
+              <Header title={'Profile'} balance={`${this.props.balance} DIV`}></Header>
+              <Content>
+                <Card style={{flex: 1}}>
+                  <CardItem>
+                    <Left>
+                    <Image style={styles.image} source={{
+                      uri: this.props.navigation.state.params.image
+                    }}/>
+                      <Body>
+                      <Text style={{color:'#557B83', fontSize:25}}>{this.props.navigation.state.params.name}</Text>
+                        <Text note>
+                          {this.props.navigation.state.params.location}
+                        </Text>
+                      </Body>
+                    </Left>
+                  </CardItem>
+                  <CardItem>
+                    <Body>
+                      <Text>
+                      {this.props.navigation.state.params.bio}
+                      </Text>
+                    </Body>
+                  </CardItem>
+                  <CardItem>
+                    <Left>
+                      <Button transparent textStyle={{color: '#39AEA9'}}>
+                        <Icon style={{color: '#3AAFA9'}} name="ios-git-compare" />
+                        <Text style={{color: '#3AAFA9', fontSize:15}} >{this.state.balance} DIV</Text>
+                        </Button>
+                      </Left>
+                      <Right>
+                      <Button transparent textStyle={{color: '#39AEA9', size:'30'}} onPress={() => {
+                        this.onBack()}}>
+                      <Text style={{color: '#3AAFA9', fontSize:15}} >Back</Text>
+                      </Button>
+                    </Right>
+                  </CardItem>
+                </Card>
+                </Content>
+                <Modal onComplete={()=>{this.onComplete()}} animationType='none'
+                transparent={false}
+                visible={this.state.showAd}>
+                <WebView
+              source={{uri:this.props.navigation.state.params.video}}
+              style={{height: height, width: width}}
+              mediaPlaybackRequiresUserAction={false}
+              allowsInlineMediaPlayback={true}
+              bounces={false}
+              />
+                </Modal>
+              </Container>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return {history: state.data.history}
+  return {history: state.data.history, balance: state.balance.balance}
 }
 
 export default connect(mapStateToProps, actions)(CharityProfile)
 
 const styles = StyleSheet.create({
-  scroll: {
-    backgroundColor: '#FFF',
-    padding: 30,
-    flexDirection: 'column'
-  },
   label: {
-    color: 'white',
     fontSize: 20,
     margin: 10,
-    alignSelf: 'center'
-  },
-  alignRight: {
-    alignSelf: 'flex-end'
-  },
-  textInput: {
-    height: 50,
-    fontSize: 30
-  },
-  buttonWhiteText: {
-    fontSize: 20,
-    color: '#FFF'
-  },
-  buttonBlackText: {
-    fontSize: 20,
-    color: '#595856'
-  },
-  footer: {
-    marginTop: 5
-  },
-  header: {
-    fontSize: 40,
-    color: '#283940',
-    alignSelf: 'center',
-    marginTop: 30
   },
   image: {
-    height: 200,
-    width: 200,
-    borderRadius: 100,
-    alignSelf: 'center',
-    borderWidth: 2,
-    borderColor: 'white'
+    height: 150,
+    width: 150,
+    borderRadius: 75,
   }
 })

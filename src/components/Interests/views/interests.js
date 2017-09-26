@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   StyleSheet
 } from 'react-native'
+import {Icon} from 'react-native-elements'
 import { connect } from 'react-redux'
 import { Container, Content } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -17,15 +18,15 @@ import Header from '../../common/header'
 import * as actions from '../../../actions'
 
 class Interests extends Component {
-  state={
-    interests:[]
-  }
 
   componentWillMount = () => {
     this.setState({interests:this.props.interests})
     AsyncStorage.getItem('Interests').then((res) => {
-      if (res) {
+      console.log(res, 'RESINTERESTS')
+      if (JSON.parse(res)) {
         this.setState({interests:JSON.parse(res)})
+      } else {
+        this.setState({interests:this.props.interests})
       }
     })
   }
@@ -46,8 +47,7 @@ class Interests extends Component {
     let two = one.splice(8,15)
     return (
       <Container style={{backgroundColor:'#283940'}}>
-      <Header title='Interests'/>
-      <Login />
+      <Header title='Interests' balance={`${this.props.balance} DIV`}/>
       <Content>
       <Grid>
       <Col>
@@ -57,6 +57,9 @@ class Interests extends Component {
         <Text style={styles.fonty}>{item.label}</Text>
         </Row> :
         <Row style={styles.selectedBlock} key={item.label} onPress={()=>{this.updateInterests(item)}}>
+        <Text style={styles.selectedFont}>
+        <Icon name= {'ios-heart-outline'} type={'ionicon'} size={40} color={'#FE6D64'} style={{height:40, width:40}}/>
+        </Text>
         <Text style={styles.selectedFont}>{item.label}</Text>
         </Row>)
       )}
@@ -68,6 +71,9 @@ class Interests extends Component {
         <Text style={styles.fonty}>{item.label}</Text>
         </Row> :
         <Row style={styles.selectedBlock} key={item.label} onPress={()=>{this.updateInterests(item)}}>
+        <Text style={styles.selectedFont}>
+        <Icon name= {'ios-heart-outline'} type={'ionicon'} size={40} color={'#FE6D64'} style={{height:40, width:40}}/>
+        </Text>
         <Text style={styles.selectedFont}>{item.label}</Text>
         </Row>)
       )}
@@ -80,7 +86,7 @@ class Interests extends Component {
 }
 
 const mapStateToProps= (state) =>{
-  return {interests:state.data.interests}
+  return {interests: state.data.interests, balance: state.balance.balance}
 }
 
 export default connect(mapStateToProps,actions)(Interests)
@@ -108,14 +114,12 @@ const styles = StyleSheet.create({
     textAlign:'center',
     color:'#FFF',
     fontSize:25,
-    fontWeight:'600'
+    fontWeight:'200'
   },
   selectedBlock: {
     height:200,
     alignItems:'center',
     justifyContent: 'center',
-    backgroundColor:'#A2D5AC',
-    borderWidth:1,
-    borderColor:'#E6EFC2'
+    flexDirection:'column'
   }
 })
