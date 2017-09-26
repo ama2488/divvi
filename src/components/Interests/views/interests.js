@@ -23,10 +23,10 @@ class Interests extends Component {
     this.setState({interests:this.props.interests})
     AsyncStorage.getItem('Interests').then((res) => {
       console.log(res, 'RESINTERESTS')
-      if (JSON.parse(res) !=={}) {
+      if (JSON.parse(res)) {
         this.setState({interests:JSON.parse(res)})
       } else {
-        this.setState({interests:this.params.interests})
+        this.setState({interests:this.props.interests})
       }
     })
   }
@@ -86,7 +86,7 @@ class Interests extends Component {
 }
 
 const mapStateToProps= (state) =>{
-  return {interests:state.data.interests, balance: state.balance.balance}
+  return {interests: state.data.interests, balance: state.balance.balance}
 }
 
 export default connect(mapStateToProps,actions)(Interests)

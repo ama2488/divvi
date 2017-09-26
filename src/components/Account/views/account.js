@@ -75,8 +75,8 @@ componentWillMount = () => {
   Alert.alert(
   'Log Out',
   'Are you sure you want to log out?',
-  [{text: 'Yep', onPress: () => this.props.navigation.navigate('Charities', {logout:true})},
-    {text: 'Nope', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},])
+  [{text: 'Yes', onPress: () => this.props.navigation.navigate('Charities', {logout:true})},
+    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},])
   }
 
   render () {
@@ -95,11 +95,21 @@ componentWillMount = () => {
           <Text style={{color: 'white'}}> Current Balance</Text>
           <Text style={{color: 'white', fontSize:35}}> {this.props.balance} DIV</Text>
           </Col>
-          <Col>
+          <Col style={styles.center}>
+          <Text>
+          <Icon
+          name= {'ios-cash-outline'}
+          style={{height:400, width:400, color: '#FFF', fontSize:80}}/>
+          </Text>
           </Col>
           </Row>
           <Row style={{backgroundColor:'#3AAFA9', borderWidth:1, borderColor: '#3AAFA9'}}>
-          <Col>
+          <Col style={styles.center}>
+          <Text>
+          <Icon
+          name= {'ios-globe-outline'}
+          style={{height:400, width:400, color: '#FFF', fontSize:80}}/>
+          </Text>
           </Col>
           <Col style={styles.center}>
           <Text style={{color: 'white'}}> Total Donations</Text>

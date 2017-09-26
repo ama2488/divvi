@@ -46,6 +46,7 @@
 		DF7C7F7E367D40B1B0217F58 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4FE2AADDA4B95910F70E8 /* Foundation.ttf */; };
 		EBB8117C1BFA0514F79CAF74 /* libPods-divvi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-divvi.a */; };
 		FA271E692E6E44C684197087 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45FB6991D1124B86847C55F3 /* MaterialCommunityIcons.ttf */; };
+		101779551A4140A28B45D1B4 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7588B2D4B2C04509AD6A71B9 /* OFL.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +223,7 @@
 		EB50FC8F61E0417689BB9507 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F426F4838CAE4BE7BEBFB061 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		F4936B4EFD1D48238323CFE6 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		7588B2D4B2C04509AD6A71B9 /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../node_modules/native-base/Fonts/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +338,7 @@
 				4F2C52EC8D5A4222A63D7AF7 /* SimpleLineIcons.ttf */,
 				E4F2668CCC054CBC8C93049A /* Zocial.ttf */,
 				158D75D7F75943999E3DB63C /* Feather.ttf */,
+				7588B2D4B2C04509AD6A71B9 /* OFL.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				075ED0C4736C4A5BB10A2433 /* SimpleLineIcons.ttf in Resources */,
 				CCC0D38BA0B343F585308C71 /* Zocial.ttf in Resources */,
 				98B0E5C413F94E91B1B3FD12 /* Feather.ttf in Resources */,
+				101779551A4140A28B45D1B4 /* OFL.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

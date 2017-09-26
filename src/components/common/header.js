@@ -31,7 +31,7 @@ const Header = (props) => {
 
     {props.onLogout ?
       <Button transparent onPress={() => {props.onLogout()}} style={{paddingBottom:20, paddingLeft:15}}>
-      <Icon name="ios-log-out-outline" style={{color: '#FFF', fontSize:30, marginRight:0, marginLeft:30, fontWeight:'100'}}/>
+      <Icon name="ios-log-out-outline" style={{color: '#FFF', fontSize:28, marginRight:0, marginLeft:30, fontWeight:'100'}}/>
       </Button>
        : null}
     </NBHeader>
@@ -41,7 +41,7 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 35,
+    fontSize: 30,
     color: '#FFF',
     alignSelf: 'center',
     fontWeight: '100',

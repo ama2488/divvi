@@ -55,7 +55,7 @@
     "react-native-randombytes": "^2.3.0",
     "react-native-tcp": "^3.3.0",
     "react-native-udp": "^2.1.0",
-    "react-native-vector-icons": "^4.3.0",
+    "react-native-vector-icons": "^4.4.0",
     "react-navigation": "^1.0.0-beta.11",
     "readable-stream": "^1.0.33",
     "redux-logger": "^3.0.6",

@@ -143,7 +143,7 @@ class Charities extends Component {
         <Container style={{backgroundColor: '#283940'}}>
         <Login refreshBalance={()=>{this.refreshBalance()}} isLogout={this.state.logout}/>
         <Header title={'DIVVI'}
-        image={'../../images/2.png'}
+        image={true}
         balance={`${this.state.balance} DIV`}/>
           <View>
             <DeckSwiper
