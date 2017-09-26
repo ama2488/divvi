@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DIVVI</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
+<body>
+  <nav class='blue-grey darken-4'>
+    <div class="nav-wrapper">
+      <div class="container">
+      <a href="#" class="brand-logo teal-accent-2-text">DIVVI</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <h6 id="balance"></h6>
+      </ul>
+    </div>
+    </div>
+  </nav>
+  <main>
+<div class="container signin">
+<div class="row">
+  <a class="waves-effect waves-light btn-large modal-trigger col s4 teal lighten-3 blue-grey-text" href="#AdAccount">Create Company Account</a>
+  <a class="waves-effect waves-light btn-large modal-trigger col s4 teal lighten-2 blue-grey-text" href="#CharAccount">Create Charity Account</a>
+  <a class="waves-effect waves-light btn-large modal-trigger col s4 teal lighten-1 blue-grey-text" href="#Login">Login with Existing Account</a>
+</div>
+</div>
+<div class='container'>
+  <h5 class="allDaCharities"></h5>
+</div>
+<div class="container">
+<div class="row formStuff" id="charityForm">
+    <form class="col s12" action="/charities/" method="post" id="charityProfile">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="" id="organization" type="text" class="validate" name="name">
+          <label for="organization">Organization</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="location" type="text" class="validate" name="location">
+          <label for="location">Location</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input value="" id="picture" type="text" name="image" class="validate">
+          <label for="picture">Picture</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="bio" name="bio" type="text" class="validate"></textarea>
+          <label for="bio">Bio</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="website" type="text" name="website" class="validate">
+          <label for="website">Website</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="EIN" type="text" class="validate" name="EIN">
+          <label for="EIN">EIN</label>
+        </div>
+      </div>
+      <button type="submit" class="btn waves-effect btn-flat center">Update Profile</button>
+    </form>
+    </div>
+    </div>
+    <div class="container">
+
+    <div id="adForm" class="row formStuff">
+      <form class="col s12" action="/ads" method="post">
+        <div class="row">
+          <div class="input-field col s6">
+            <input placeholder="" id="organization" type="text" class="validate" name="company">
+            <label for="organization">Organization</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="video" type="text" class="validate" name="video">
+            <label for="video">Video URL</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input value="" id="picture" type="text" name="image" class="validate">
+            <label for="picture">Picture</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="website" type="text" name="website" class="validate">
+            <label for="website">Website</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="DIV" type="text" class="validate" name="coins">
+            <label for="DIV">DIV Price</label>
+          </div>
+        </div>
+      </form>
+  </div>
+  </div>
+  <div id="AdAccount" class="modal">
+      <div class="modal-content">
+        <h3>Company Account</h3>
+        <form class="" action="/account" method="post">
+        <label for="newAccount">Password:</label><input type="password" id="aPassword" name="password" placeholder="don't forget this!"></input>
+        <label for="newAccount">Repeat Password:</label><input type="password" id="rPassword" placeholder="must match"></input>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a href="#!" onclick="App.createAccount()" class="modal-action modal-close waves-effect btn-flat">Create Company Account</a>
+      </div>
+      </form>
+    </div>
+
+    <div id="CharAccount" class="modal">
+        <div class="modal-content">
+          <h3>Charity Account</h3>
+          <form class="" action="/account" method="post">
+          <br><label for="switch">Password:</label><input type="password" id="password" name="password" placeholder="don't forget this!"></input>
+          <label for="newCharity">Repeat Password:</label><input type="password" id="Rpassword" placeholder="must match"></input>
+          <input type='text' value='true' name='isCharity' hidden/>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+          <a href="#!" onclick="App.createAccount(true)" class="modal-action modal-close waves-effect waves-green btn-flat">Create Charity Account</a>
+        </div>
+      </form>
+      </div>
+
+      <div id="Login" class="modal">
+          <div class="modal-content">
+            <h3>Login</h3>
+            <form class="" action="/account" method="get">
+            <br><label for="switch">Username:</label><input type="password" id="loginName" placeholder=""></input>
+            <br><label for="switch">Password:</label><input type="password" id="loginPassword" placeholder=""></input>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a href="#!" type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Sign In</a>
+          </div>
+        </div>
+          </form>
+    </main>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script> -->
+<script src="http://localhost:8081/assets/app.js">
+</script>
+</html>
