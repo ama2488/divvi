@@ -1,6 +1,8 @@
 
-# divvi
+# Divvi
 dApp built on the Ethereum blockchain using Truffle and web3. Allows users to earn Divvi Coins by watching ads and then distribute those coins to charities of their choosing.
+
+[watch demo](https://youtu.be/P6dwDKgz4kU)
 
 # Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
